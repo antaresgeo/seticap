@@ -1,0 +1,14 @@
+.MainLogo{
+    width: 350px;
+    z-index: 1;
+    position: relative;
+    margin-bottom: 0px !important;
+}
+
+.HomeRibbon{
+    padding-top: 0px !important;
+}
+
+.HomeRibbon:before{
+    height: 200px !important;
+}
