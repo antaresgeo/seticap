@@ -27,7 +27,7 @@ class LoginContainer extends Component {
                             </label>
 		                </div>
                         
-		                <Button>Iniciar sesión</Button>
+		                <Link to="/"><Button>Iniciar sesión</Button></Link>
 		            </form>
 		        </div>
                 <div className="pad-all">
