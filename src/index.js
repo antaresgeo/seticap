@@ -6,7 +6,7 @@ import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter } from 'react-router-dom';
 
 const app = (
-    <BrowserRouter basename="/seticap/">
+    <BrowserRouter basename="">
         <App />
     </BrowserRouter>
 )

@@ -8,6 +8,11 @@ import DolarAmounts from '../../components/HomePage/DolarAmounts/DolarAmounts';
 import Footer from '../../components/HomePage/Footer/Footer';
 
 class HomePage extends Component {
+    
+    componentDidMount(){
+        console.log('did mount')
+    }
+
     render() {
         return (
             <React.Fragment>
