@@ -4,13 +4,72 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDollarSign, faExchangeAlt } from '@fortawesome/free-solid-svg-icons'
 import HomeHeader from '../../components/HomePage/Header/Header'
 import DolarPrices from '../../components/HomePage/DolarPrices/DolarPrices';
-import DolarAmounts from '../../components/HomePage/DolarAmounts/DolarAmounts';
-import Footer from '../../components/HomePage/Footer/Footer';
-
+import DolarAmmounts from '../../components/HomePage/DolarAmounts/DolarAmounts';
+import { AxiosHome } from '../../axiosInstances';
 class HomePage extends Component {
     
+    state = {
+        dolarPrices: {},
+        dolarAmmounts: {},
+        closePrice: 0,
+        avgPrice: 0
+    }
+
+    mapDolarPrices = (stats) => {
+        const dolarPrices = {
+            trm: {
+                price: stats.trm,
+                change: stats.trmPriceChange
+            },
+            openPrice: {
+                price: stats.openPrice,
+                change: stats.openPriceChange
+            },
+            minPrice: {
+                price: stats.minPrice,
+                change: stats.minPriceChange
+            },
+            maxPrice: {
+                price: stats.maxPrice,
+                change: stats.maxPriceChange
+            },
+        }
+
+        const newState = {
+            ...this.state,
+            dolarPrices: dolarPrices
+        }
+        this.setState(newState);
+    }
+
+    mapAmmountPrices = stats => {
+        const ammountPrices = {
+            totalAmmount : stats.totalAmmount,
+            latestAmmount: stats.latestAmmount,
+            avgAmmount: stats.avgAmmount,
+            minAmmount: stats.minAmmount,
+            maxAmmount: stats.maxAmmount,
+            transactions: stats.transactions
+        }
+        const newState = {
+            ...this.state,
+            dolarAmmounts: ammountPrices
+        }
+        this.setState(newState)
+    }
+
     componentDidMount(){
-        console.log('did mount')
+        let now = new Date();
+        AxiosHome.get(`/stats?${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`)
+            .then(response => {
+                this.mapDolarPrices(response.data);
+                this.mapAmmountPrices(response.data);
+                this.setState({
+                    ...this.state,
+                    closePrice: response.data.closePrice,
+                    avgPrice: response.data.avgPrice
+                })
+            })
     }
 
     render() {
@@ -51,7 +110,7 @@ class HomePage extends Component {
                                                 </div>
                                             </div>
                                             <div className="media-body">
-                                                <p className="text-2x mar-no text-semibold">3200</p>
+                                                <p className="text-2x mar-no text-semibold">{this.state.closePrice}</p>
                                                 <p className="mar-no">Cierre</p>
                                             </div>
                                         </div>
@@ -64,7 +123,7 @@ class HomePage extends Component {
                                                 </div>
                                             </div>
                                             <div className="media-body">
-                                                <p className="text-2x mar-no text-semibold">3120</p>
+                                                <p className="text-2x mar-no text-semibold">{this.state.avgPrice}</p>
                                                 <p className="mar-no">Promedio</p>
                                             </div>
                                         </div>
@@ -73,10 +132,10 @@ class HomePage extends Component {
                             </div>
                             <div className="row">
                                 <div className="col-md-6">
-                                    <DolarPrices></DolarPrices>
+                                    {Object.keys(this.state.dolarPrices).length ? <DolarPrices dolarPrices={this.state.dolarPrices}></DolarPrices> : ''}
                                 </div>
                                 <div className="col-md-6">
-                                    <DolarAmounts></DolarAmounts>
+                                    {Object.keys(this.state.dolarAmmounts).length ? <DolarAmmounts dolarAmmounts={this.state.dolarAmmounts}></DolarAmmounts> : ''}
                                 </div>
                             </div>
                         </div>

@@ -2,9 +2,14 @@ import React from "react";
 import NiftyTable from "../../Nifty/UI/Table/NiftyTable";
 import Row from "../../../components/Nifty/UI/Table/Row/NiftyRow";
 import Cell from "../../../components/Nifty/UI/Table/Row/NiftyCell";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classes from "./DolarPrices.css";
+import { faChevronUp, faChevronDown, faDotCircle } from '@fortawesome/free-solid-svg-icons'
 
 const dolarPrices = props => {
+
+  const prices = props.dolarPrices;
+  
   return (
     <div className={["panel", "panel-primary", classes.DolarPrice].join(" ")}>
       <div className="panel-heading">
@@ -17,7 +22,8 @@ const dolarPrices = props => {
               <span className="text-main text-semibold">TRM</span>
             </Cell>
             <Cell>
-              <span className="text-danger text-semibold">- 28.76%</span>
+              <span className={["text-semibold", getFontClass(prices.trm.change)].join(' ')}>{prices.trm.price} </span>
+              <FontAwesomeIcon className={getFontClass(prices.trm.change)} icon={getFontAwesomeIcon(prices.trm.change)} />
             </Cell>
           </Row>
           <Row>
@@ -25,7 +31,8 @@ const dolarPrices = props => {
               <span className="text-main text-semibold">Apertura</span>
             </Cell>
             <Cell className="text-center">
-              <span className="text-warning text-semibold">- 8.55%</span>
+              <span className={["text-semibold", getFontClass(prices.openPrice.change)].join(' ')}>{prices.openPrice.price} </span>
+              <FontAwesomeIcon className={getFontClass(prices.openPrice.change)} icon={getFontAwesomeIcon(prices.openPrice.change)} />
             </Cell>
           </Row>
           <Row>
@@ -33,7 +40,8 @@ const dolarPrices = props => {
               <span className="text-main text-semibold">Mínimo</span>
             </Cell>
             <Cell className="text-center">
-              <span className="text-success text-semibold">+ 58.56%</span>
+              <span className={["text-semibold", getFontClass(prices.minPrice.change)].join(' ')}>{prices.minPrice.price} </span>
+              <FontAwesomeIcon className={getFontClass(prices.minPrice.change)} icon={getFontAwesomeIcon(prices.minPrice.change)} />
             </Cell>
           </Row>
           <Row>
@@ -41,7 +49,8 @@ const dolarPrices = props => {
               <span className="text-main text-semibold">Máximo</span>
             </Cell>
             <Cell className="text-center">
-              <span className="text-success text-semibold">+ 35.76%</span>
+              <span className={["text-semibold", getFontClass(prices.maxPrice.change)].join(' ')}>{prices.maxPrice.price} </span>
+              <FontAwesomeIcon className={getFontClass(prices.maxPrice.change)} icon={getFontAwesomeIcon(prices.maxPrice.change)} />
             </Cell>
           </Row>
         </NiftyTable>
@@ -49,5 +58,29 @@ const dolarPrices = props => {
     </div>
   );
 };
+
+const getFontAwesomeIcon = str => {
+  if(str === 'up'){
+    return faChevronUp
+  }
+  if(str === 'down'){
+    return faChevronDown
+  }
+  if(str === 'eq'){
+    return faDotCircle
+  }
+}
+
+const getFontClass = str => {
+  if(str === 'up'){
+    return "text-success"
+  }
+  if(str === 'down'){
+    return "text-danger"
+  }
+  if(str === 'eq'){
+    return "text-primary"
+  }
+}
 
 export default dolarPrices;
