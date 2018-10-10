@@ -5,8 +5,9 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter } from 'react-router-dom';
 
+
 const app = (
-    <BrowserRouter basename="">
+    <BrowserRouter basename={process.env.REACT_APP_BASEPATH}>
         <App />
     </BrowserRouter>
 )

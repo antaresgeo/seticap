@@ -4,7 +4,7 @@ import Row from "../../../components/Nifty/UI/Table/Row/NiftyRow";
 import Cell from "../../../components/Nifty/UI/Table/Row/NiftyCell";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classes from "./DolarPrices.css";
-import { faChevronUp, faChevronDown, faDotCircle } from '@fortawesome/free-solid-svg-icons'
+import { faChevronUp, faChevronDown, faDotCircle, faMinusCircle } from '@fortawesome/free-solid-svg-icons'
 
 const dolarPrices = props => {
 
@@ -69,6 +69,7 @@ const getFontAwesomeIcon = str => {
   if(str === 'eq'){
     return faDotCircle
   }
+  return faMinusCircle
 }
 
 const getFontClass = str => {
@@ -81,6 +82,7 @@ const getFontClass = str => {
   if(str === 'eq'){
     return "text-primary"
   }
+  return "text-primary"
 }
 
 export default dolarPrices;
