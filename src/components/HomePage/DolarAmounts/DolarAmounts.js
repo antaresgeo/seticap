@@ -5,11 +5,10 @@ import Cell from '../../Nifty/UI/Table/Row/NiftyCell';
 import classes from './DolarAmounts.css';
 
 const dolarAmmounts = (props) => {
-    console.log(props.dolarAmmounts)
     return (
         <div className={["panel", "panel-primary", classes.DolarAmounts].join(' ')} style={{paddingBottom: '2px'}}>
             <div className="panel-heading">
-                <h3 className="panel-title">Precios del dolar</h3>
+                <h3 className="panel-title">Montos USD</h3>
             </div>
             <div className={["panel-body", classes.Body].join(" ")}>
             <NiftyTable lineHeight="18px">

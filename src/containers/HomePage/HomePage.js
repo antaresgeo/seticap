@@ -1,18 +1,31 @@
+/*eslint no-control-regex: "off", no-invalid-regexp: "off"*/
 import React, { Component } from 'react'
-import classes from './HomePage.css'
+
+import { AxiosHome } from '../../axiosInstances';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDollarSign, faExchangeAlt } from '@fortawesome/free-solid-svg-icons'
+import fixUtf8 from 'fix-utf8';
+
 import HomeHeader from '../../components/HomePage/Header/Header'
 import DolarPrices from '../../components/HomePage/DolarPrices/DolarPrices';
 import DolarAmmounts from '../../components/HomePage/DolarAmounts/DolarAmounts';
-import { AxiosHome } from '../../axiosInstances';
+import News from '../../components/HomePage/News/News';
+import Currencies from '../../components/HomePage/Currencies/Currency'
+
+
+import classes from './HomePage.css'
+
+const CURRENCY_REGEX = new RegExp('(?<from>\\w{3})\\s+\\/\\s+(?<to>\\w{3})\\s+(?<value>[\\d\\.]+)\\s*(?<change>[\\d\\.\\+\\-]+)');
+
 class HomePage extends Component {
     
     state = {
         dolarPrices: {},
         dolarAmmounts: {},
         closePrice: 0,
-        avgPrice: 0
+        avgPrice: 0,
+        news : [],
+        currencies: []
     }
 
     mapDolarPrices = (stats) => {
@@ -58,6 +71,22 @@ class HomePage extends Component {
         this.setState(newState)
     }
 
+    mapNews = news => {
+        const newState = {
+            ...this.state,
+            news: news
+        }
+        this.setState(newState);
+    }
+
+    mapCurrencyData = data => {
+        const newState = {
+            ...this.state,
+            currencies: data
+        }
+        this.setState(newState);
+    }
+
     componentDidMount(){
         let now = new Date();
         AxiosHome.get(`/stats?${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`)
@@ -69,7 +98,35 @@ class HomePage extends Component {
                     closePrice: response.data.closePrice,
                     avgPrice: response.data.avgPrice
                 })
-            })
+            });
+
+        AxiosHome.get('/json/newsJson').then(
+            response => {
+                const fixed = response.data.map(elem => {
+                    return {
+                        ...elem,
+                        body: fixUtf8(elem.body),
+                        headline: fixUtf8(elem.headline)
+                    }
+                });
+                this.mapNews(fixed);
+            }
+        )
+
+        AxiosHome.get('/currencies').then(
+            response => {
+                const parser = new DOMParser()
+                let parserTable = parser.parseFromString(response.data, 'text/html');
+                const CurrencyData = Array.from(parserTable.getElementsByTagName('tr')).map(tr => {
+                    if(CURRENCY_REGEX.test(tr.innerText)){
+                        const results = CURRENCY_REGEX.exec(tr.innerText);
+                        return results.slice(1)
+                    }
+                    return null;
+                }).filter(Boolean);
+                this.mapCurrencyData(CurrencyData)
+            }
+        )
     }
 
     render() {
@@ -136,6 +193,14 @@ class HomePage extends Component {
                                 </div>
                                 <div className="col-md-6">
                                     {Object.keys(this.state.dolarAmmounts).length ? <DolarAmmounts dolarAmmounts={this.state.dolarAmmounts}></DolarAmmounts> : ''}
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-md-4">
+                                    <News news={this.state.news}></News>
+                                </div>
+                                <div className="col-md-4">
+                                    <Currencies currencies={this.state.currencies}></Currencies>
                                 </div>
                             </div>
                         </div>

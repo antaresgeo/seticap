@@ -1,0 +1,8 @@
+.News .Body{
+    max-height: 270px;
+    overflow-y: scroll;
+}
+
+.Body .more{
+    line-height: 36px;
+}

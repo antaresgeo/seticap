@@ -22,6 +22,7 @@ const niftyTable = (props) => {
         if (element.type === Row) {
             return React.cloneElement(element, { lineHeight: lineHeight, key: index });
         }
+        return null;
     });
 
     return (
