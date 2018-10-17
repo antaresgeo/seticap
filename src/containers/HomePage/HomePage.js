@@ -11,12 +11,12 @@ import DolarPrices from '../../components/HomePage/DolarPrices/DolarPrices';
 import DolarAmmounts from '../../components/HomePage/DolarAmounts/DolarAmounts';
 import News from '../../components/HomePage/News/News';
 import Currencies from '../../components/HomePage/Currencies/Currency'
-
+import BVCStock from '../../components/HomePage/BVCStock/BVCStock';
 
 import classes from './HomePage.css'
 
 const CURRENCY_REGEX = new RegExp('(?<from>\\w{3})\\s+\\/\\s+(?<to>\\w{3})\\s+(?<value>[\\d\\.]+)\\s*(?<change>[\\d\\.\\+\\-]+)');
-
+const BVC_REGEX = new RegExp('(?<stock>[A-Za-z]+)(?<stock_value>\\d*\\.*\\d{1,3}\\,\\d{2})(?<stock_change>\\-*\\d+\\.*\\d*)')
 class HomePage extends Component {
     
     state = {
@@ -25,7 +25,8 @@ class HomePage extends Component {
         closePrice: 0,
         avgPrice: 0,
         news : [],
-        currencies: []
+        currencies: [],
+        bvc: []
     }
 
     mapDolarPrices = (stats) => {
@@ -87,6 +88,15 @@ class HomePage extends Component {
         this.setState(newState);
     }
 
+    mapBVCData = data => {
+        console.log(data);
+        const newState = {
+            ...this.state,
+            bvc: data
+        }
+        this.setState(newState);
+    }
+
     componentDidMount(){
         let now = new Date();
         AxiosHome.get(`/stats?${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`)
@@ -115,7 +125,7 @@ class HomePage extends Component {
 
         AxiosHome.get('/currencies').then(
             response => {
-                const parser = new DOMParser()
+                const parser = new DOMParser();
                 let parserTable = parser.parseFromString(response.data, 'text/html');
                 const CurrencyData = Array.from(parserTable.getElementsByTagName('tr')).map(tr => {
                     if(CURRENCY_REGEX.test(tr.innerText)){
@@ -125,6 +135,21 @@ class HomePage extends Component {
                     return null;
                 }).filter(Boolean);
                 this.mapCurrencyData(CurrencyData)
+            }
+        )
+
+        AxiosHome.get('/bvc').then(
+            response => {
+                const parser = new DOMParser();
+                let parserTable = parser.parseFromString(response.data, 'text/html');
+                const CurrencyData = Array.from(parserTable.getElementsByTagName('tr')).map(tr => {
+                    if(BVC_REGEX.test(tr.innerText)){
+                        const results = BVC_REGEX.exec(tr.innerText);
+                        return results.slice(1);
+                    }
+                    return null;
+                }).filter(Boolean);
+                this.mapBVCData(CurrencyData);
             }
         )
     }
@@ -201,6 +226,9 @@ class HomePage extends Component {
                                 </div>
                                 <div className="col-md-4">
                                     <Currencies currencies={this.state.currencies}></Currencies>
+                                </div>
+                                <div className="col-md-4">
+                                    <BVCStock stocks={this.state.bvc}></BVCStock>
                                 </div>
                             </div>
                         </div>

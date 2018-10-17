@@ -1,0 +1,5 @@
+.bvcStocks .Body{
+    max-height: 270px;
+    min-height: 270px;
+    overflow-y: scroll;
+}

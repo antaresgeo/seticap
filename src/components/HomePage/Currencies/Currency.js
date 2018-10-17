@@ -4,7 +4,7 @@ const currencies = props => {
   return (
     <div className="panel panel-primary">
       <div className="panel-heading">
-        <h3 className="panel-title">Primary</h3>
+        <h3 className="panel-title">Monedas</h3>
       </div>
       <div className="panel-body">
         <table className="table">
