@@ -12,7 +12,7 @@ import DolarAmmounts from '../../components/HomePage/DolarAmounts/DolarAmounts';
 import News from '../../components/HomePage/News/News';
 import Currencies from '../../components/HomePage/Currencies/Currency'
 import BVCStock from '../../components/HomePage/BVCStock/BVCStock';
-
+import DolarSpot from './DolarSpot/DolarSpot';
 import classes from './HomePage.css'
 
 const CURRENCY_REGEX = new RegExp('(?<from>\\w{3})\\s+\\/\\s+(?<to>\\w{3})\\s+(?<value>[\\d\\.]+)\\s*(?<change>[\\d\\.\\+\\-]+)');
@@ -161,13 +161,7 @@ class HomePage extends Component {
                     <HomeHeader />
                     <div className="boxed">
                         <div className="container-fluid">
-                            <div className={classes.DolarSpot}>
-                                <div className="row">
-                                    <div className="col-lg-12">
-                                        <h3>Dolar Spot</h3>
-                                    </div>
-                                </div>
-                            </div>
+                            <DolarSpot></DolarSpot>
                             <br></br>
                             <div className={classes.DolarEndDay}>
                                 <div className="row">
@@ -213,17 +207,18 @@ class HomePage extends Component {
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="col-md-6">
+                                <div className="col-md-3">
                                     {Object.keys(this.state.dolarPrices).length ? <DolarPrices dolarPrices={this.state.dolarPrices}></DolarPrices> : ''}
                                 </div>
-                                <div className="col-md-6">
+                                <div className="col-md-5">
                                     {Object.keys(this.state.dolarAmmounts).length ? <DolarAmmounts dolarAmmounts={this.state.dolarAmmounts}></DolarAmmounts> : ''}
                                 </div>
-                            </div>
-                            <div className="row">
                                 <div className="col-md-4">
                                     <News news={this.state.news}></News>
                                 </div>
+                            </div>
+                            <div className="row">
+                                
                                 <div className="col-md-4">
                                     <Currencies currencies={this.state.currencies}></Currencies>
                                 </div>
