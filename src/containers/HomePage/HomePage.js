@@ -214,13 +214,12 @@ class HomePage extends Component {
                                     {Object.keys(this.state.dolarAmmounts).length ? <DolarAmmounts dolarAmmounts={this.state.dolarAmmounts}></DolarAmmounts> : ''}
                                 </div>
                                 <div className="col-md-4">
-                                    <News news={this.state.news}></News>
+                                    <Currencies currencies={this.state.currencies}></Currencies>
                                 </div>
                             </div>
                             <div className="row">
-                                
-                                <div className="col-md-4">
-                                    <Currencies currencies={this.state.currencies}></Currencies>
+                            <div className="col-md-4">
+                                    <News news={this.state.news}></News>
                                 </div>
                                 <div className="col-md-4">
                                     <BVCStock stocks={this.state.bvc}></BVCStock>

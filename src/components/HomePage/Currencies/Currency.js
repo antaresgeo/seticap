@@ -2,11 +2,10 @@ import React from "react";
 
 const currencies = props => {
   return (
-    <div className="panel panel-primary">
+    <div className="panel panel-primary" style={{paddingBottom: '3px'}}>
       <div className="panel-heading">
         <h3 className="panel-title">Monedas</h3>
       </div>
-      <div className="panel-body">
         <table className="table">
           <thead>
             <tr>
@@ -27,7 +26,6 @@ const currencies = props => {
             ))}
           </tbody>
         </table>
-      </div>
     </div>
   );
 };
