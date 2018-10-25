@@ -1,7 +1,8 @@
 /*eslint no-control-regex: "off", no-invalid-regexp: "off"*/
 import React, { Component } from 'react'
+import {connect} from 'react-redux';
 
-import { AxiosHome } from '../../axiosInstances';
+import { Http } from '../../axiosInstances';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDollarSign, faExchangeAlt } from '@fortawesome/free-solid-svg-icons'
 import fixUtf8 from 'fix-utf8';
@@ -89,7 +90,6 @@ class HomePage extends Component {
     }
 
     mapBVCData = data => {
-        console.log(data);
         const newState = {
             ...this.state,
             bvc: data
@@ -99,7 +99,7 @@ class HomePage extends Component {
 
     componentDidMount(){
         let now = new Date();
-        AxiosHome.get(`/stats?${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`)
+        Http.get(`/stats?${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`)
             .then(response => {
                 this.mapDolarPrices(response.data);
                 this.mapAmmountPrices(response.data);
@@ -110,7 +110,7 @@ class HomePage extends Component {
                 })
             });
 
-        AxiosHome.get('/json/newsJson').then(
+        Http.get('/json/newsJson').then(
             response => {
                 const fixed = response.data.map(elem => {
                     return {
@@ -123,7 +123,7 @@ class HomePage extends Component {
             }
         )
 
-        AxiosHome.get('/currencies').then(
+        Http.get('/currencies').then(
             response => {
                 const parser = new DOMParser();
                 let parserTable = parser.parseFromString(response.data, 'text/html');
@@ -138,7 +138,7 @@ class HomePage extends Component {
             }
         )
 
-        AxiosHome.get('/bvc').then(
+        Http.get('/bvc').then(
             response => {
                 const parser = new DOMParser();
                 let parserTable = parser.parseFromString(response.data, 'text/html');
@@ -158,7 +158,7 @@ class HomePage extends Component {
         return (
             <React.Fragment>
                 <div id="container">
-                    <HomeHeader />
+                    <HomeHeader auth={this.props.auth} />
                     <div className="boxed">
                         <div className="container-fluid">
                             <DolarSpot></DolarSpot>
@@ -233,4 +233,10 @@ class HomePage extends Component {
     }
 }
 
-export default HomePage;
+const mapStateToProps = state => {
+    return {
+        auth: state.auth
+    }
+}
+
+export default connect(mapStateToProps)(HomePage);

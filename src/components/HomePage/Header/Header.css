@@ -12,3 +12,19 @@
 .HomeRibbon:before{
     height: 200px !important;
 }
+
+.authRibbon{
+    height: 3em;
+    line-height: 3em;
+    background-color: #2C4767;
+}
+
+.login{
+    margin-right: 20px;
+    color: white;
+}
+
+.login:hover{
+    color: white;
+    text-decoration: underline !important;
+}

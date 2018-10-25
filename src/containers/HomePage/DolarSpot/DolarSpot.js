@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import classes from "./DolarSpot.css";
 import Chart from "chart.js";
-import { AxiosHome } from "../../../axiosInstances";
+import { Http } from "../../../axiosInstances";
 class DolarSpotChart extends Component {
   state = {
     labels: [],
@@ -13,9 +13,9 @@ class DolarSpotChart extends Component {
   chart = null;
 
   componentDidMount() {
-    AxiosHome.get("/json/allStatsV2").then(response => {
+    Http.get("/json/allStatsV2").then(response => {
       const labels = response.data.map(elem => {
-        return elem[0].map(el => (parseInt(el) > 9 ? el : `0${el}`)).join(":");
+        return elem[0].map(el => (parseInt(el, 10) > 9 ? el : `0${el}`)).join(":");
       });
       const dolarValueData = response.data.map(elem => elem[2]);
       const mountUSD = response.data.map(elem => elem[1]);
@@ -100,8 +100,8 @@ class DolarSpotChart extends Component {
   render() {
     return (
       <div className="panel">
-        <div class="panel-heading">
-          <h3 class="panel-title">Dolar Spot</h3>
+        <div className="panel-heading">
+          <h3 className="panel-title">Dolar Spot</h3>
         </div>
         <div className="pad-all">
           <canvas

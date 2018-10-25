@@ -1,5 +1,17 @@
 import axios from 'axios';
 
-export const AxiosHome = axios.create({
-    baseURL: 'http://www.set-fx.com/'    
+export const Http = axios.create({
+    baseURL: process.env.REACT_APP_PROXY_SERVER    
 });
+
+export const AuthHttp = axios.create({
+    baseURL: process.env.REACT_APP_PROXY_SERVER
+});
+
+AuthHttp.interceptors.request.use( config => {
+    const token = localStorage.getItem('token');
+    if(token !== ''){
+        config.headers.Authorization = `${token}`;
+    }
+    return config;
+})

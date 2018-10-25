@@ -1,10 +1,11 @@
 import React from 'react';
 import classes from './Layout.css';
 import setIcapLogo from '../../assets/img/SET-ICAP FX.png';
+import {Link} from 'react-router-dom';
 const layout = (props) => {
     return(
         <div className={classes.LoginContainer}>
-            <img alt="SET ICAP | FX" src={setIcapLogo} className={classes.Logo}/>
+            <Link to="/"><img alt="SET ICAP | FX" src={setIcapLogo} className={classes.Logo}/></Link>
             {props.children}
         </div>
     )

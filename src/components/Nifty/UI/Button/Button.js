@@ -10,9 +10,9 @@ const typeToButtonClass = {
 }
 
 const button = (props) => {
-    const btnType = props.type === undefined ? typeToButtonClass['primary'] : typeToButtonClass[props.type]
+    const btnType = props.buttonType === undefined ? typeToButtonClass['primary'] : typeToButtonClass[props.type]
     return (
-        <button className={['btn', 'btn-lg', 'btn-block', btnType].join(' ')}>{props.children}</button>
+        <button type={props.buttonType} {...props} className={['btn', 'btn-lg', 'btn-block', btnType].join(' ')}>{props.children}</button>
     )
 
 }
