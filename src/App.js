@@ -6,17 +6,19 @@ import ForgotPassword from './containers/Auth/ForgotPassword/ForgotPassword';
 import CreateAccount from './containers/Auth/CreateAccount/CreateAccount';
 import HomePage from './containers/HomePage/HomePage';
 import Dashboard from './containers/Dashboard/Dashboard';
+import Loader from './components/Nifty/UI/Loader/Loader';
 import {connect} from 'react-redux';
 import './App.css';
 
 class App extends Component {
   componentWillMount(){
-    this.props.checkLogin();
+    this.props.checkLogin(this.props.history);
     
   }
   render() {
     return (
       <Switch>
+        {this.props.auth.logginIn ? <Loader></Loader> : null}
         <Route path="/auth/login/" component={Login}/>
         <Route path="/auth/forgot-password/" component={ForgotPassword}/>
         <Route path="/auth/create-account/" component={CreateAccount} />
@@ -37,7 +39,7 @@ const mapStateToProps = (store) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    checkLogin : () => dispatch(authActions.checkLogin())
+    checkLogin : (history) => dispatch(authActions.checkLogin(history))
   }
 }
 

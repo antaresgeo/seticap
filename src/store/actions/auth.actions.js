@@ -36,7 +36,7 @@ const autoLogin = () => {
     }
 }
 
-const authCheckLogin = () => {
+const authCheckLogin = (history) => {
     return dispatch => {
         dispatch(autoLogin());
         const token = localStorage.getItem('token');
@@ -45,15 +45,23 @@ const authCheckLogin = () => {
                 if(data.active){
                     const user = localStorage.getItem('user');
                     dispatch(authFinished({token, user}));
+                    history.push('/dashboard/');
                 }else{
-                    console.log('loged off')
+                    dispatch(logout())
                 }
             })
         }
     }
 }
 
+const logout = () => {
+    return {
+        type: authActionTypes.LOGOUT
+    }
+}
+
 export default {
     login: login,
-    checkLogin: authCheckLogin
+    checkLogin: authCheckLogin,
+    logout: logout
 }
