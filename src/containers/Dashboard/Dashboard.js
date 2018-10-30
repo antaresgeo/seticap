@@ -39,19 +39,6 @@ class Dashboard extends Component {
 			  <div className="col-lg-12">
 					<div id="demo-panel-network" className="panel">
 						<div className="panel-heading">
-							<div className="panel-control">
-								<button id="demo-panel-network-refresh" className="btn btn-default btn-active-primary" data-toggle="panel-overlay" data-target="#demo-panel-network"><i className="demo-psi-repeat-2"></i></button>
-								<div className="dropdown">
-									<button className="dropdown-toggle btn btn-default btn-active-primary" data-toggle="dropdown" aria-expanded="false"><i className="demo-psi-dot-vertical"></i></button>
-									<ul className="dropdown-menu dropdown-menu-right">
-										<li><a >Action</a></li>
-										<li><a >Another action</a></li>
-										<li><a >Something else here</a></li>
-										<li className="divider"></li>
-										<li><a >Separated link</a></li>
-									</ul>
-								</div>
-							</div>
 							<h3 className="panel-title">Dolar SPOT</h3>
 						</div>
 						<div className="pad-all">
