@@ -4,6 +4,8 @@ import authActions from "../../store/actions/auth.actions";
 
 import Header from "../../components/Dashboard/Header/Header";
 import Navbar from "../../components/Dashboard/Navbar/Navbar";
+import DolarSpot from '../shared/DolarSpot/DolarSpot';
+import Loader from '../../components/Nifty/UI/Loader/Loader';
 
 class Dashboard extends Component {
   state = {
@@ -20,6 +22,7 @@ class Dashboard extends Component {
           "aside-bright",
           this.state.largeMenu ? "mainnav-lg" : "mainnav-sm"
         ].join(" ")}>
+        {this.props.auth.logginIn ? <Loader opacity="0.8"></Loader> : null}
         <Header
           largeMenu={this.state.largeMenu}
           user={this.props.auth.user}
@@ -38,11 +41,10 @@ class Dashboard extends Component {
 		  	<div className="row">
 			  <div className="col-lg-12">
 					<div id="demo-panel-network" className="panel">
-						<div className="panel-heading">
-							<h3 className="panel-title">Dolar SPOT</h3>
-						</div>
 						<div className="pad-all">
-							CHART GOES HERE
+              <div className="container-fluid">
+							<DolarSpot />
+              </div>
 						</div>
 					</div>
 				</div>

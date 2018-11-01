@@ -16,7 +16,7 @@ const homeHeader = props => {
                     props.auth.token === ''? 
                     "Iniciar sesión" : 
                     `Bienvenido(a) ${props.auth.user}`
-                 : null}
+                 : '...'}
                   <FontAwesomeIcon style={{marginLeft: '10px'}} icon={faUser}></FontAwesomeIcon>
             </Link>
           </div>

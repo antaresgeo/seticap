@@ -36,7 +36,7 @@ const autoLogin = () => {
     }
 }
 
-const authCheckLogin = (history) => {
+const authCheckLogin = () => {
     return dispatch => {
         dispatch(autoLogin());
         const token = localStorage.getItem('token');
@@ -45,7 +45,6 @@ const authCheckLogin = (history) => {
                 if(data.active){
                     const user = localStorage.getItem('user');
                     dispatch(authFinished({token, user}));
-                    history.push('/dashboard/');
                 }else{
                     dispatch(logout())
                 }

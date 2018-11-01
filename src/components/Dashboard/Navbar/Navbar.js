@@ -7,26 +7,26 @@ const navbar = props => {
       <nav id="mainnav-container">
         <div id="mainnav">
           <div id="mainnav-menu-wrap">
-            <div class="nano">
-              <div class="nano-content" tabIndex="0">
-                <ul id="mainnav-menu" class="list-group">
-                  <li class="list-header">Menu</li>
-                  <li class="active-sub">
+            <div className="nano">
+              <div className="nano-content" tabIndex="0">
+                <ul id="mainnav-menu" className="list-group">
+                  <li className="list-header">Menu</li>
+                  <li className="active-sub">
                     <a data-original-title="" title="">
                       <FontAwesomeIcon icon={faDollarSign} style={{fontSize: '1.4em', marginRight: "5px"}}/>
-                      <span class="menu-title"> Spot USD/COP</span>
+                      <span className="menu-title"> Spot USD/COP</span>
                     </a>
                   </li>
                   <li>
                     <a data-original-title="" title="">
                       <FontAwesomeIcon icon={faCalendarAlt} style={{fontSize: '1.4em', marginRight: "5px"}}/>
-                      <span class="menu-title"> Next day USD/COP</span>
+                      <span className="menu-title"> Next day USD/COP</span>
                     </a>
                   </li>
                   <li>
                     <a data-original-title="" title="">
-                      <i class="demo-pli-gear" />
-                      <span class="menu-title">Estadisticas</span>
+                      <i className="demo-pli-gear" />
+                      <span className="menu-title">Estadisticas</span>
                     </a>
                   </li>
                 </ul>

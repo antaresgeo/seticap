@@ -63,6 +63,7 @@ class DolarSpotChart extends Component {
         options: {
           responsive: true,
           animation: false,
+          maintainAspectRatio: false,
           scales: {
             yAxes: [
               {
@@ -103,13 +104,11 @@ class DolarSpotChart extends Component {
         <div className="panel-heading">
           <h3 className="panel-title">Dolar Spot</h3>
         </div>
-        <div className="pad-all">
+        <div style={{width:"100%"}}>
           <canvas
             className={classes.DolarSpotCanvas}
             id="DolarSpotChart"
-            height="350"
           />
-          
         </div>
       </div>
     );

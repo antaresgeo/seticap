@@ -13,8 +13,9 @@ import DolarAmmounts from "../../components/HomePage/DolarAmounts/DolarAmounts";
 import News from "../../components/HomePage/News/News";
 import Currencies from "../../components/HomePage/Currencies/Currency";
 import BVCStock from "../../components/HomePage/BVCStock/BVCStock";
-import DolarSpot from "./DolarSpot/DolarSpot";
+import DolarSpot from "../shared/DolarSpot/DolarSpot";
 import classes from "./HomePage.css";
+import Loader from '../../components/Nifty/UI/Loader/Loader';
 
 const CURRENCY_REGEX = new RegExp(
   "(?<from>\\w{3})\\s+\\/\\s+(?<to>\\w{3})\\s+(?<value>[\\d\\.]+)\\s*(?<change>[\\d\\.\\+\\-]+)"
@@ -159,10 +160,11 @@ class HomePage extends Component {
   render() {
     return (
       <React.Fragment>
+        {this.props.auth.logginIn ? <Loader opacity="0.8"></Loader> : null}
         <div id="container">
           <HomeHeader auth={this.props.auth} />
           <div className="boxed">
-            <div className="container-fluid">
+            <div className={['container-fluid', classes.padd20].join(' ')}>
               <DolarSpot />
               <br />
               <div className={classes.DolarEndDay}>
