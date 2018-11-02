@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import classes from "./DolarSpot.css";
 import Chart from "chart.js";
-import { Http } from "../../../axiosInstances";
+import { Http, AuthHttp } from "../../../axiosInstances";
+import {connect} from 'react-redux';
 class DolarSpotChart extends Component {
   state = {
     labels: [],
@@ -13,7 +14,8 @@ class DolarSpotChart extends Component {
   chart = null;
 
   getChartData() {
-    Http.get("/json/allStatsV2").then(response => {
+    const client = this.props.auth.user ? AuthHttp : Http;
+    client.get("/json/allStatsV2", {params : {market: this.props.market ? this.props.market : 'spot'}}).then(response => {
       const labels = response.data.map(elem => {
         return elem[0].map(el => (parseInt(el, 10) > 9 ? el : `0${el}`)).join(":");
       });
@@ -35,13 +37,15 @@ class DolarSpotChart extends Component {
     }
   }
 
-  componentDidUpdate() {
+
+  componentDidUpdate(prevProps) {
     if (
       !this.state.loaded &&
       this.state.labels.length &&
       this.state.dolarValueData.length &&
       this.state.mountUSD
     ) {
+
       let ctx = document.getElementById("DolarSpotChart").getContext("2d");
       const config = {
         type: "bar",
@@ -128,4 +132,10 @@ class DolarSpotChart extends Component {
   }
 }
 
-export default DolarSpotChart;
+const mapStateToProps = state => {
+  return {
+    auth: state.auth
+  }
+}
+
+export default connect(mapStateToProps)(DolarSpotChart);

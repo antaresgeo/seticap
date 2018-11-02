@@ -44,7 +44,8 @@ class Dashboard extends Component {
                 <div id="demo-panel-network" className="panel">
                   <div className="pad-all">
                     <div className="container-fluid">
-                      <DolarSpot refresh={30} />
+                      { this.state.market === 'spot' ?
+                        <DolarSpot key="spot" market="spot" refresh={30} /> : <DolarSpot key="nextday" market="nextday" refresh={30} />}
                     </div>
                   </div>
                 </div>
@@ -58,7 +59,6 @@ class Dashboard extends Component {
   }
 
   changeMarket = (market) => {
-    console.log(market);
     this.setState({market: market})
   }
 
