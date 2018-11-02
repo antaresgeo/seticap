@@ -11,14 +11,14 @@ const navbar = props => {
               <div className="nano-content" tabIndex="0">
                 <ul id="mainnav-menu" className="list-group">
                   <li className="list-header">Menu</li>
-                  <li className="active-sub">
-                    <a data-original-title="" title="">
+                  <li className={props.market === 'spot' ? 'active-sub' : ''}>
+                    <a onClick={() => props.changeMarket('spot')}>
                       <FontAwesomeIcon icon={faDollarSign} style={{fontSize: '1.4em', marginRight: "5px"}}/>
                       <span className="menu-title"> Spot USD/COP</span>
                     </a>
                   </li>
-                  <li>
-                    <a data-original-title="" title="">
+                  <li className={props.market === 'nextday' ? 'active-sub' : ''}>
+                    <a onClick={() => props.changeMarket('nextday')}>
                       <FontAwesomeIcon icon={faCalendarAlt} style={{fontSize: '1.4em', marginRight: "5px"}}/>
                       <span className="menu-title"> Next day USD/COP</span>
                     </a>

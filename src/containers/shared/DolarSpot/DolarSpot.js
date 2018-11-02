@@ -12,7 +12,7 @@ class DolarSpotChart extends Component {
 
   chart = null;
 
-  componentDidMount() {
+  getChartData() {
     Http.get("/json/allStatsV2").then(response => {
       const labels = response.data.map(elem => {
         return elem[0].map(el => (parseInt(el, 10) > 9 ? el : `0${el}`)).join(":");
@@ -26,6 +26,13 @@ class DolarSpotChart extends Component {
         mountUSD: mountUSD
       });
     });
+  }
+
+  componentDidMount() {
+    this.getChartData();
+    if (this.props.refresh !== undefined) {
+      this.interval = setInterval(this.getChartData.bind(this), this.props.refresh * 1000)
+    }
   }
 
   componentDidUpdate() {
@@ -104,7 +111,7 @@ class DolarSpotChart extends Component {
         <div className="panel-heading">
           <h3 className="panel-title">Dolar Spot</h3>
         </div>
-        <div style={{width:"100%"}}>
+        <div style={{ width: "100%", padding: '0 20px' }}>
           <canvas
             className={classes.DolarSpotCanvas}
             id="DolarSpotChart"
@@ -112,6 +119,12 @@ class DolarSpotChart extends Component {
         </div>
       </div>
     );
+  }
+
+  componentWillUnmount() {
+    if (this.interval) {
+      clearInterval(this.interval);
+    }
   }
 }
 

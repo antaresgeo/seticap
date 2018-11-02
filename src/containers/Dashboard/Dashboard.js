@@ -9,7 +9,8 @@ import Loader from '../../components/Nifty/UI/Loader/Loader';
 
 class Dashboard extends Component {
   state = {
-    largeMenu: true
+    largeMenu: true,
+    market: 'spot',
   };
 
   render() {
@@ -28,32 +29,37 @@ class Dashboard extends Component {
           user={this.props.auth.user}
           actions={{ logout: this.props.logout, toggleMenu: this.toggleMenu }}
         />
-        <Navbar />
+        <Navbar market={this.state.market} changeMarket={this.changeMarket} />
         <div id="content-container">
-          
-		  <div id="page-head">
+
+          <div id="page-head">
             <div className="pad-all text-center">
               <h2>Información del dólar intercambiario en tiempo real</h2>
             </div>
           </div>
 
-		  <div id="page-content">
-		  	<div className="row">
-			  <div className="col-lg-12">
-					<div id="demo-panel-network" className="panel">
-						<div className="pad-all">
-              <div className="container-fluid">
-							<DolarSpot />
+          <div id="page-content">
+            <div className="row">
+              <div className="col-lg-12">
+                <div id="demo-panel-network" className="panel">
+                  <div className="pad-all">
+                    <div className="container-fluid">
+                      <DolarSpot refresh={30} />
+                    </div>
+                  </div>
+                </div>
               </div>
-						</div>
-					</div>
-				</div>
-			</div>
-		  </div>
+            </div>
+          </div>
 
         </div>
       </div>
     );
+  }
+
+  changeMarket = (market) => {
+    console.log(market);
+    this.setState({market: market})
   }
 
   toggleMenu = () => {

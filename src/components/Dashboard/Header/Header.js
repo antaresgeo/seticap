@@ -12,7 +12,6 @@ import {
 import DropDown from "../../Nifty/UI/DropDown/HeaderDropDown";
 
 const header = props => {
-    console.log(props);
   return (
     <header id="navbar">
       <div id="navbar-container" className="boxed">
