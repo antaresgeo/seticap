@@ -11,8 +11,8 @@ export const login = (user, password, history) => {
                 dispatch(authFinished(response.data));
                 history.push('/dashboard/')
             }
-        ).catch(err => {
-            console.log(err);
+        ).catch((err) => {
+            dispatch(authError(err.response.data.error))
         })
     }
 }
@@ -33,6 +33,13 @@ const authFinished = (auth) => {
 const autoLogin = () => {
     return {
         type: authActionTypes.LOGIN_INITIAL_CHECK
+    }
+}
+
+const authError = error => {
+    return {
+        type: authActionTypes.LOGIN_ERROR,
+        payload: error
     }
 }
 

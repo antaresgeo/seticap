@@ -5,6 +5,7 @@ const initialState = {
     token: '',
     logginIn: false,
     user: '',
+    error: ''
 }
 
 const reducer = (state = initialState, action) => {
@@ -12,7 +13,8 @@ const reducer = (state = initialState, action) => {
         case actions.authActionTypes.LOGIN_START:
             return {
                 ...state,
-                logginIn: true
+                logginIn: true,
+                error: ''
             }
         case actions.authActionTypes.LOGIN_SUCCESS:
             return {
@@ -33,6 +35,11 @@ const reducer = (state = initialState, action) => {
                 token: '',
                 user: '',
                 logginIn: false
+            }
+        case actions.authActionTypes.LOGIN_ERROR:
+            return {
+                ...state,
+                error: action.payload
             }
         default:
             return state

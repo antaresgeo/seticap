@@ -10,6 +10,7 @@ class LoginContainer extends Component {
   render() {
     return (
       <Layout>
+        {this.props.loginError ? <div className="alert alert-danger">{this.props.loginError}</div> : null}
         <div className="panel-body">
           <div
             className={["mar-ver", "pad-btm", classes.TitleSection].join(" ")}
@@ -77,7 +78,7 @@ const mapPropsToValues = props => {
   return {
     username: props.username || "",
     password: props.password || "",
-    rememberme: props.rememberme || ""
+    rememberme: props.rememberme || "",
   };
 };
 
@@ -87,8 +88,12 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
+const mapStateToProps = state => ({
+  loginError: state.auth.error  
+})
+
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(
   withFormik({

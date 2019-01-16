@@ -16,11 +16,12 @@ class DolarSpotChart extends Component {
   getChartData() {
     const client = this.props.auth.user ? AuthHttp : Http;
     client.get("/json/allStatsV2", {params : {market: this.props.market ? this.props.market : 'spot'}}).then(response => {
-      const labels = response.data.map(elem => {
+      
+      const labels = response.data ? response.data.map(elem => {
         return elem[0].map(el => (parseInt(el, 10) > 9 ? el : `0${el}`)).join(":");
-      });
-      const dolarValueData = response.data.map(elem => elem[2]);
-      const mountUSD = response.data.map(elem => elem[1]);
+      }) : [];
+      const dolarValueData = response.data ? response.data.map(elem => elem[2]) : [];
+      const mountUSD = response.data ? response.data.map(elem => elem[1]) : [];
       this.setState({
         ...this.state,
         labels: labels,
