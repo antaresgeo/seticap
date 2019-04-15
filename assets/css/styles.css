@@ -71,3 +71,8 @@
     background-color: rgba(0,0,0,0);
     
   }
+
+  .panel.panel-info .panel-heading{
+    background-color: #0077AC;
+    border-color: #0077AC;
+  }

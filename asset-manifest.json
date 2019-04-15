@@ -1,9 +1,14 @@
 {
-  "main.css": "static/css/main.24308dcf.css",
-  "main.css.map": "static/css/main.24308dcf.css.map",
-  "main.js": "static/js/main.5d615a6a.js",
-  "main.js.map": "static/js/main.5d615a6a.js.map",
+  "main.css": "static/css/main.9fb562c6.css",
+  "main.css.map": "static/css/main.9fb562c6.css.map",
+  "main.js": "static/js/main.bb941110.js",
+  "main.js.map": "static/js/main.bb941110.js.map",
   "static/media/SET-ICAP FX neg.png": "static/media/SET-ICAP FX neg.127dda0d.png",
   "static/media/SET-ICAP FX.png": "static/media/SET-ICAP FX.8b536918.png",
-  "static/media/cross-seticap.png": "static/media/cross-seticap.b558796c.png"
+  "static/media/cross-seticap.png": "static/media/cross-seticap.b558796c.png",
+  "static/media/logo-tp-icap.png": "static/media/logo-tp-icap.2c9a7582.png",
+  "static/media/powered_01.png": "static/media/powered_01.1b51b702.png",
+  "static/media/rewind-time.png": "static/media/rewind-time.fd19cc2a.png",
+  "static/media/set-fx-logo.png": "static/media/set-fx-logo.602d7456.png",
+  "static/media/vigilado-sfc.png": "static/media/vigilado-sfc.b558a489.png"
 }
