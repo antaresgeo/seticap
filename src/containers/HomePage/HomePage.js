@@ -223,10 +223,7 @@ class HomePage extends Component {
                   </div>
                 </div>
               </div>
-
               <DolarSpot />
-              <br />
-              
               <div className="row">
               <div className="col-md-12">
                 <iframe

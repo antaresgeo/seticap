@@ -3,3 +3,13 @@
     min-height: 270px;
     overflow-y: scroll;
 }
+
+.BVCLogo{
+    width: 50px;
+    display: inline-block;
+    margin-top: 3px;
+    margin-right: 5px;
+}
+.Inline{
+    display: inline;
+}

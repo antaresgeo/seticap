@@ -1,10 +1,12 @@
 import React from "react";
 import classes from './BVCStock.css';
+import bvcLogo from '../../../assets/img/logo-nuevo-bvc-w.png'
 const BVCStock = props => {
   return (
     <div className={["panel", "panel-info", classes.bvcStocks].join(" ")}>
       <div className="panel-heading">
-        <h3 className="panel-title">Bolsa de valores de Colombia</h3>
+        <h3 className={['panel-title', classes.Inline].join(' ')}>Bolsa de valores de Colombia</h3>
+        <img src={bvcLogo} className={[classes.BVCLogo, "pull-right"].join(' ')} alt="bvc-logo"/>
       </div>
       <div className={["panel-body", classes.Body].join(' ')}>
         <table className="table">

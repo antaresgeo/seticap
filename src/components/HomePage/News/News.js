@@ -4,8 +4,8 @@ import classes from './News.css';
 const news = props => {
   
   return (
-    <div className={["panel", "panel-danger", classes.News].join(" ")}>
-      <div className="panel-heading">
+    <div className={["panel", classes.News].join(" ")}>
+      <div className={["panel-heading", classes.Republica].join(' ')}>
         <h3 className="panel-title">Noticias</h3>
       </div>
 
