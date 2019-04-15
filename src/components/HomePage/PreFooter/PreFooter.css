@@ -1,0 +1,34 @@
+.VDivider{
+    border-top: solid 2px #DCDCDC;
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.SetFXLogo{
+    width: 100%;
+    margin-left: -100px;
+    margin-top: -120px;
+}
+
+.HDivider{
+    height: 140px;
+    margin-left: 50px;
+    display: inline-block;
+    border-right: 1px solid #979AF0;
+}
+
+.SetTPLogo{
+    height: 140px;
+    padding: 10px;
+}
+
+@media screen and (max-width: 991px){
+    .HDivider{
+        display: none;
+    }
+    .SetFXLogo{
+        margin-left: 0;
+    margin-top: 0;
+    }
+}

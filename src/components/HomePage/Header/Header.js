@@ -4,14 +4,27 @@ import logo from "../../../assets/img/SET-ICAP FX neg.png";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faUser} from '@fortawesome/free-solid-svg-icons';
 import {Link} from 'react-router-dom';
+import epayco from '../../../assets/img/boton_de_cobro_epayco5.png'
+
+
 const homeHeader = props => {
   const to = props.auth.token === '' ? '/auth/login/' : '/dashboard/';
   return (
     <React.Fragment>
-      <div className={classes.authRibbon}>
-        <div className="row">
-          <div className="col-md-12">
-            <Link to={to} className={['pull-right', classes.login].join(' ')}>
+      <div id="content-container" className={classes.HomeRibbon}>
+        <div id="row">
+          <div className="col-md-4">
+            <img className={classes.MainLogo} alt="set-fx logo" src={logo} />
+          </div>
+          <div className="col-md-8">
+            <div className={['container', classes.ContainerButtons].join(' ')}>
+            <div className="col-md-8 col-md-push-4">
+            {props.auth.token === '' ? 
+            <React.Fragment><Link to={`/auth/create-account/`} className={['btn', 'btn-warning', classes.HeaderButton].join(' ')}>
+              Regístrese y obtenga una Demo
+            </Link> <div className={classes.Separator}></div> </React.Fragment>: ''}
+            
+            <Link to={to} className={['btn', 'btn-success', classes.HeaderButton].join(' ')}>
                 {!props.auth.logginIn ?  
                     props.auth.token === ''? 
                     "Iniciar sesión" : 
@@ -19,15 +32,17 @@ const homeHeader = props => {
                  : '...'}
                   <FontAwesomeIcon style={{marginLeft: '10px'}} icon={faUser}></FontAwesomeIcon>
             </Link>
+            <div className={classes.Separator}></div>
+            <div className={classes.EpaycoInline}>
+              <span className={classes.EpaycoLabel}>Cancele sus servicios online</span>
+            <div className={['btn', classes.BTNEpayco].join(' ')}>
+              <img alt="epayco button" src={epayco} />
+            </div>
+            </div>
+            </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div id="content-container" className={classes.HomeRibbon}>
-        <div id="page-head">
-          <div className="pad-all text-center">
-            <img className={classes.MainLogo} alt="set-fx logo" src={logo} />
-            <h4>NEGOCIACIÓN Y REGISTRO DE DIVISAS</h4>
-          </div>
+          <div className="clearfix"/>
         </div>
       </div>
     </React.Fragment>

@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import { Http } from "../../axiosInstances";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDollarSign, faExchangeAlt } from "@fortawesome/free-solid-svg-icons";
+import { faExchangeAlt } from "@fortawesome/free-solid-svg-icons";
 import fixUtf8 from "fix-utf8";
 
 import HomeHeader from "../../components/HomePage/Header/Header";
@@ -16,6 +16,9 @@ import BVCStock from "../../components/HomePage/BVCStock/BVCStock";
 import DolarSpot from "../shared/DolarSpot/DolarSpot";
 import classes from "./HomePage.css";
 import Loader from '../../components/Nifty/UI/Loader/Loader';
+import clockRewind from '../../assets/img/rewind-time.png';
+import PreFooter from '../../components/HomePage/PreFooter/PreFooter';
+import Footer from "../../components/shared/Footer/Footer";
 
 const CURRENCY_REGEX = new RegExp(
   "(?<from>\\w{3})\\s+\\/\\s+(?<to>\\w{3})\\s+(?<value>[\\d\\.]+)\\s*(?<change>[\\d\\.\\+\\-]+)"
@@ -165,30 +168,25 @@ class HomePage extends Component {
           <HomeHeader auth={this.props.auth} />
           <div className="boxed">
             <div className={['container-fluid', classes.padd20].join(' ')}>
-              <DolarSpot />
-              <br />
-              <div className={classes.DolarEndDay}>
+            <div className={classes.DolarEndDay}>
                 <div className="row">
-                  <div className="col-md-4">
+                  <div className="col-md-6">
                     <div className="panel media middle pad-all">
                       <div className="media-left">
                         <div className="pad-hor">
-                          <FontAwesomeIcon
-                            className="fa-4x"
-                            icon={faDollarSign}
-                          />
+                          <img alt="clock" src={clockRewind} style={{width: '52px'}}></img>
                         </div>
                       </div>
                       <div className="media-body">
-                        <p className="text-2x mar-no text-semibold">
-                          Dolar set FX
+                        <p className="mar-no text-semibold" style={{fontSize: '1.4em'}}>
+                        Información del dólar intercambiario en tiempo real
                         </p>
                         <p className="mar-no" />
                       </div>
                     </div>
                   </div>
-                  <div className="col-md-4">
-                    <div className="panel panel-info panel-colorful media middle pad-all">
+                  <div className="col-md-3">
+                    <div className="panel panel-primary panel-colorful media middle pad-all">
                       <div className="media-left">
                         <div className="pad-hor">
                           <FontAwesomeIcon
@@ -205,8 +203,8 @@ class HomePage extends Component {
                       </div>
                     </div>
                   </div>
-                  <div className="col-md-4">
-                    <div className="panel panel-info panel-colorful media middle pad-all">
+                  <div className="col-md-3">
+                    <div className="panel panel-primary panel-colorful media middle pad-all">
                       <div className="media-left">
                         <div className="pad-hor">
                           <FontAwesomeIcon
@@ -225,6 +223,10 @@ class HomePage extends Component {
                   </div>
                 </div>
               </div>
+
+              <DolarSpot />
+              <br />
+              
               <div className="row">
               <div className="col-md-12">
                 <iframe
@@ -259,12 +261,19 @@ class HomePage extends Component {
               </div>
               <div className="row">
                 <div className="col-md-4">
-                  <News news={this.state.news} />
-                </div>
-                <div className="col-md-4">
                   <BVCStock stocks={this.state.bvc} />
                 </div>
+                <div className="col-md-4">
+                  <News news={this.state.news} />
+                </div>
               </div>
+              {!this.props.auth.token ? <div className="row">
+                    <div className="col-md-12 text-center">
+                    Información con 15 minutos de retraso
+                    </div>
+              </div> : '' }
+              <PreFooter></PreFooter>
+              <Footer></Footer>
             </div>
           </div>
         </div>

@@ -1,0 +1,72 @@
+.RightReserved{
+    height: 3em;
+    background-color: #0077AC;
+    color: white;
+    line-height: 3em;
+}
+
+.RightReservedBackground{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3em;
+    background-color: #0077AC;
+    width: 100%;
+}
+
+.PoweredByEpayco{
+    margin-bottom: 10px;
+}
+
+.SetFXNegative{
+    width: 80%;
+    padding: 2em 0 0 0;
+}
+
+.SiteMap{
+    background-color: #25476A;
+    height: 180px;
+}
+
+.SitemapBackground{
+    position: absolute;
+    bottom: 3em;
+    left: 0;
+    height: 180px;
+    background-color: #25476A;
+    width: 100%;
+}
+
+.FooterMiddle{
+    line-height: 4em;
+    margin-top: 3em;
+    height: 110px;
+    padding-top: 0;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    padding-left: 60px;
+    color: white !important;
+}
+
+.FooterMiddle li a{
+    color: white;
+    cursor: pointer;
+}
+
+.LastMiddle{
+    margin-top: 2em;
+    color: white !important;
+}
+
+.LastMiddle h4{
+    color:white;
+}
+
+.LastMiddle ul{
+    line-height: 3em;
+}
+
+.LastMiddle ul li a{
+    color: white;
+    cursor: pointer;
+}
