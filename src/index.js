@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 
 import App from "./App";
-import registerServiceWorker from "./registerServiceWorker";
+import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from "react-router-dom";
 
 import thunk from "redux-thunk";
@@ -26,4 +26,4 @@ const app = (
 );
 
 ReactDOM.render(app, document.getElementById("root"));
-registerServiceWorker();
+serviceWorker.unregister();
