@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "1ab0879ab0ce846daf50a5f172ff4e57",
+    "revision": "ad665fad37e71e1adc562b1028d7f270",
     "url": "/seticap/index.html"
   },
   {
-    "revision": "12b6307a3814dde34f3f",
-    "url": "/seticap/static/css/main.e18dfd19.chunk.css"
+    "revision": "5ce5fbbc2e0c24966d85",
+    "url": "/seticap/static/css/main.1d951095.chunk.css"
   },
   {
-    "revision": "7a497f8fdb0dfb72ad96",
-    "url": "/seticap/static/js/2.dc580f9c.chunk.js"
+    "revision": "023c82871c5eb516dfa0",
+    "url": "/seticap/static/js/2.45fadc66.chunk.js"
   },
   {
-    "revision": "12b6307a3814dde34f3f",
-    "url": "/seticap/static/js/main.20714b2e.chunk.js"
+    "revision": "5ce5fbbc2e0c24966d85",
+    "url": "/seticap/static/js/main.3e9cd88c.chunk.js"
   },
   {
     "revision": "0176d9e4da8b0250bdd6",
@@ -30,6 +30,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "b558796ce6815f717f8cd8eae6261183",
     "url": "/seticap/static/media/cross-seticap.b558796c.png"
+  },
+  {
+    "revision": "4f076688c73a4b82559a35f3fab12164",
+    "url": "/seticap/static/media/la-republica.4f076688.png"
   },
   {
     "revision": "afa4e0a189a4cb42ff4ca808128609d7",
