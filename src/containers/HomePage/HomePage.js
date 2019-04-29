@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import { Http } from "../../axiosInstances";
+import axios from 'axios';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExchangeAlt } from "@fortawesome/free-solid-svg-icons";
 import fixUtf8 from "fix-utf8";
@@ -106,6 +107,18 @@ class HomePage extends Component {
 
   componentDidMount() {
     let now = new Date();
+    Http.get('/news/rss/').then(response => {
+      console.log(response.data);
+      const news = response.data.item.map(elem => {
+        return {
+          ...elem,
+          body: elem.description,
+          headline: elem.title
+        }
+      });
+      this.mapNews(news);
+    })
+
     Http.get(
       `/stats?${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`
     ).then(response => {
@@ -118,16 +131,16 @@ class HomePage extends Component {
       });
     });
 
-    Http.get("/json/newsJson").then(response => {
-      const fixed = response.data.map(elem => {
-        return {
-          ...elem,
-          body: fixUtf8(elem.body),
-          headline: fixUtf8(elem.headline)
-        };
-      });
-      this.mapNews(fixed);
-    });
+    //Http.get("/json/newsJson").then(response => {
+    //  const fixed = response.data.map(elem => {
+    //    return {
+    //      ...elem,
+    //      body: fixUtf8(elem.body),
+    //      headline: fixUtf8(elem.headline)
+    //    };
+    //  });
+    //  this.mapNews(fixed);
+    //});
 
     Http.get("/currencies").then(response => {
       const parser = new DOMParser();

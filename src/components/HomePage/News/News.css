@@ -11,3 +11,12 @@
     background-color: #C82B2B !important;
     color: white;
 }
+
+.ImageRepublica{
+    float: right;
+    width: 50px;
+    display: inline-block;
+    background-color: white;
+    margin: -42px 0;
+    padding: 3px 0 2px;
+}
