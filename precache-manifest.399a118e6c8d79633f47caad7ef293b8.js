@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "442d5492d7446f2e6c023757ec093b65",
+    "revision": "4f570459f87152d3cbf4572c6a477e67",
     "url": "/seticap/index.html"
   },
   {
-    "revision": "3363039add37058c9a88",
+    "revision": "a2b0f4224ce353272dbc",
     "url": "/seticap/static/css/main.23e4a16d.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/seticap/static/js/2.45fadc66.chunk.js"
   },
   {
-    "revision": "3363039add37058c9a88",
-    "url": "/seticap/static/js/main.51f6eac5.chunk.js"
+    "revision": "a2b0f4224ce353272dbc",
+    "url": "/seticap/static/js/main.b54d143c.chunk.js"
   },
   {
     "revision": "0176d9e4da8b0250bdd6",
