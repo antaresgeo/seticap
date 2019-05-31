@@ -10,18 +10,18 @@ const Footer = (props) => {
             </div>
             <div className={classes.SitemapBackground}></div>
             <div className={["col-md-12", classes.SiteMap].join(' ')}>
-                <div className="col-md-4">
+                <div className="col-md-2">
+                    <div className={classes.Col100}>
                     <img src={setFXNegative} className={classes.SetFXNegative} alt="Set fx logo negative"/>
-                    <div className={classes.VDivider}>
                     </div>
                 </div>
-                <div className="col-md-4">
+                <div className="col-md-3">
                     <ul className={classes.FooterMiddle}>
                         <li><a>Política de Privacidad y Tratamiento de Datos Personales</a></li>
                         <li><a> Términos y Condiciones de Uso</a></li>
                     </ul>
                 </div>
-                <div className="col-md-4">
+                <div className="col-md-3">
                     <div className={classes.LastMiddle}>
                     <div className="col-md-12">
                         <h4>Mapa del sitio</h4>
@@ -39,6 +39,14 @@ const Footer = (props) => {
                         </ul>
                     </div>
                     </div>
+                </div>
+                <div className="col-md-3">
+                    <ul>
+                        <li>Cra. 11 No. 93 - 46 Oficina 403</li>
+                        <li>Llámenos: +57 (1) 742 77 77</li>
+                        <li>Escríbanos: info@set-icap.co</li>
+                        <li>Bogotá D.C</li>
+                    </ul>
                 </div>
             </div>
             <div className={classes.RightReservedBackground}></div>

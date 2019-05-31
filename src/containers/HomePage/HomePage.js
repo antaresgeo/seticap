@@ -183,22 +183,7 @@ class HomePage extends Component {
             <div className={['container-fluid', classes.padd20].join(' ')}>
             <div className={classes.DolarEndDay}>
                 <div className="row">
-                  <div className="col-md-6">
-                    <div className="panel media middle pad-all">
-                      <div className="media-left">
-                        <div className="pad-hor">
-                          <img alt="clock" src={clockRewind} style={{width: '52px'}}></img>
-                        </div>
-                      </div>
-                      <div className="media-body">
-                        <p className="mar-no text-semibold" style={{fontSize: '1.4em'}}>
-                        Información del dólar intercambiario en tiempo real
-                        </p>
-                        <p className="mar-no" />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-md-3">
+                <div className="col-md-3">
                     <div className="panel panel-primary panel-colorful media middle pad-all">
                       <div className="media-left">
                         <div className="pad-hor">
@@ -231,6 +216,21 @@ class HomePage extends Component {
                           {this.state.avgPrice}
                         </p>
                         <p className="mar-no">Promedio</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="panel media middle pad-all">
+                      <div className="media-left">
+                        <div className="pad-hor">
+                          <img alt="clock" src={clockRewind} style={{width: '52px'}}></img>
+                        </div>
+                      </div>
+                      <div className="media-body">
+                        <p className="mar-no text-semibold" style={{fontSize: '1.4em'}}>
+                        Información del dólar intercambiario en tiempo real
+                        </p>
+                        <p className="mar-no" />
                       </div>
                     </div>
                   </div>

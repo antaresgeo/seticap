@@ -76,9 +76,16 @@ class DolarSpotChart extends Component {
           responsive: true,
           animation: false,
           maintainAspectRatio: false,
+          line: {
+            tension: 0 // disables bezier curves
+          },
           scales: {
             yAxes: [
               {
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Precios'
+                },
                 type: "linear",
                 ticks: {
                   beginAtZero: false
@@ -98,7 +105,17 @@ class DolarSpotChart extends Component {
                   display: false
                 }
               }
-            ]
+            ],
+              xAxes: [{
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Horas'
+                },
+                ticks: {
+                    maxRotation: 90,
+                    minRotation: 90
+                }
+            }]
           }
         }
       };
