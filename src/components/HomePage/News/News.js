@@ -15,7 +15,7 @@ const news = props => {
           <div key={elem.pubDate} className="list-group-item">
             <h4 className="list-group-item-heading">{elem.headline}</h4>
             <p className="list-group-item-text">
-              {elem.body.slice(0, 200)}...
+              {elem.body ? elem.body.slice(0, 200) : elem.headline}...
             </p>
             <a href={elem.link} className={classes.more}>Leer mas...</a>
           </div>
