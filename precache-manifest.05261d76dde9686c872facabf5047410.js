@@ -1,35 +1,35 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "4f570459f87152d3cbf4572c6a477e67",
+    "revision": "ab015eaacce73b4d6884b9a10aaeaf45",
     "url": "/seticap/index.html"
   },
   {
-    "revision": "a2b0f4224ce353272dbc",
-    "url": "/seticap/static/css/main.23e4a16d.chunk.css"
+    "revision": "7ee7cc14b863a05d36eb",
+    "url": "/seticap/static/css/main.e40031fe.chunk.css"
   },
   {
-    "revision": "023c82871c5eb516dfa0",
-    "url": "/seticap/static/js/2.45fadc66.chunk.js"
+    "revision": "cbb0e41755644ab6f228",
+    "url": "/seticap/static/js/2.750ee7f9.chunk.js"
   },
   {
-    "revision": "a2b0f4224ce353272dbc",
-    "url": "/seticap/static/js/main.b54d143c.chunk.js"
+    "revision": "7ee7cc14b863a05d36eb",
+    "url": "/seticap/static/js/main.1eceec0d.chunk.js"
   },
   {
     "revision": "0176d9e4da8b0250bdd6",
     "url": "/seticap/static/js/runtime~main.856d77d4.js"
   },
   {
-    "revision": "127dda0d346b2d143fc40cbee49fce53",
-    "url": "/seticap/static/media/SET-ICAP FX neg.127dda0d.png"
-  },
-  {
-    "revision": "8b536918105e23de15fdf8a008f0b203",
-    "url": "/seticap/static/media/SET-ICAP FX.8b536918.png"
-  },
-  {
     "revision": "b558796ce6815f717f8cd8eae6261183",
     "url": "/seticap/static/media/cross-seticap.b558796c.png"
+  },
+  {
+    "revision": "5092defb4db8a868b3769171b9de91e5",
+    "url": "/seticap/static/media/icono_promedio.5092defb.png"
+  },
+  {
+    "revision": "4c2e75483f3e61184a981989c662f954",
+    "url": "/seticap/static/media/iconos_cierre.4c2e7548.png"
   },
   {
     "revision": "4f076688c73a4b82559a35f3fab12164",
