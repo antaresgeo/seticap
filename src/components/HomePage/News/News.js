@@ -11,8 +11,8 @@ const news = props => {
       </div>
 
       <div className={["list-group", classes.Body].join(' ')}>
-        {props.news.map(elem => (
-          <div key={elem.pubDate} className="list-group-item">
+        {props.news.map((elem, index) => (
+          <div key={elem.pubDate + index} className="list-group-item">
             <h4 className="list-group-item-heading">{elem.headline}</h4>
             <p className="list-group-item-text">
               {elem.body ? elem.body.slice(0, 200) : elem.headline}...

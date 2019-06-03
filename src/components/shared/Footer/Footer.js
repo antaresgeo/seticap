@@ -41,7 +41,7 @@ const Footer = (props) => {
                     </div>
                 </div>
                 <div className="col-md-3">
-                    <ul class={classes.Address}>
+                    <ul className={classes.Address}>
                         <li>Cra. 11 No. 93 - 46 Oficina 403</li>
                         <li>Llámenos: +57 (1) 742 77 77</li>
                         <li>Escríbanos: info@set-icap.co</li>

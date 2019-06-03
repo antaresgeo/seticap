@@ -11,6 +11,7 @@ import DolarAmmounts from "../../components/HomePage/DolarAmounts/DolarAmounts";
 import News from "../../components/HomePage/News/News";
 import Currencies from "../../components/HomePage/Currencies/Currency";
 import BVCStock from "../../components/HomePage/BVCStock/BVCStock";
+import StockIndex from '../../components/HomePage/StockIndex/StockIndex';
 import DolarSpot from "../shared/DolarSpot/DolarSpot";
 import classes from "./HomePage.css";
 import Loader from '../../components/Nifty/UI/Loader/Loader';
@@ -127,6 +128,24 @@ class HomePage extends Component {
         avgPrice: response.data.avgPrice
       });
     });
+
+    Http.get(
+      `/stock/index/`
+    ).then(response => {
+      this.setState({
+        ...this.state,
+        stockTable: response.data.table
+      })
+    })
+
+    Http.get(
+      `/igbcjsonV2?type=IGBC-CAP`
+    ).then(response => {
+      this.setState({
+        ...this.state,
+        stockChart: response.data
+      })
+    })
 
     //Http.get("/json/newsJson").then(response => {
     //  const fixed = response.data.map(elem => {
@@ -263,6 +282,9 @@ class HomePage extends Component {
               <div className="row">
                 <div className="col-md-4">
                   <BVCStock stocks={this.state.bvc} />
+                </div>
+                <div className="col-md-4">
+                    <StockIndex chart={this.state.stockChart} table={this.state.stockTable}></StockIndex>
                 </div>
                 <div className="col-md-4">
                   <News news={this.state.news} />
