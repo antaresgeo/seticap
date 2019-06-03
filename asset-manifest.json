@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/seticap/static/css/main.4cd9ed8e.chunk.css",
+    "main.css": "/seticap/static/css/main.b949829e.chunk.css",
     "main.js": "/seticap/static/js/main.ba109433.chunk.js",
     "main.js.map": "/seticap/static/js/main.ba109433.chunk.js.map",
     "runtime~main.js": "/seticap/static/js/runtime~main.856d77d4.js",
@@ -8,9 +8,9 @@
     "static/js/2.73f2508f.chunk.js": "/seticap/static/js/2.73f2508f.chunk.js",
     "static/js/2.73f2508f.chunk.js.map": "/seticap/static/js/2.73f2508f.chunk.js.map",
     "index.html": "/seticap/index.html",
-    "precache-manifest.9def547b11673c48fead90400fcc1c51.js": "/seticap/precache-manifest.9def547b11673c48fead90400fcc1c51.js",
+    "precache-manifest.5a80e2bed36cd72f8c875835cdeaf4d7.js": "/seticap/precache-manifest.5a80e2bed36cd72f8c875835cdeaf4d7.js",
     "service-worker.js": "/seticap/service-worker.js",
-    "static/css/main.4cd9ed8e.chunk.css.map": "/seticap/static/css/main.4cd9ed8e.chunk.css.map",
+    "static/css/main.b949829e.chunk.css.map": "/seticap/static/css/main.b949829e.chunk.css.map",
     "static/media/cross-seticap.png": "/seticap/static/media/cross-seticap.b558796c.png",
     "static/media/icono_promedio.png": "/seticap/static/media/icono_promedio.5092defb.png",
     "static/media/iconos_cierre.png": "/seticap/static/media/iconos_cierre.4c2e7548.png",
