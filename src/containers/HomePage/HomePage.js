@@ -3,11 +3,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import { Http } from "../../axiosInstances";
-import axios from 'axios';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faExchangeAlt } from "@fortawesome/free-solid-svg-icons";
-import fixUtf8 from "fix-utf8";
-
+import CloseImage from '../../assets/img/iconos_cierre.png'
+import Average from '../../assets/img/icono_promedio.png'
 import HomeHeader from "../../components/HomePage/Header/Header";
 import DolarPrices from "../../components/HomePage/DolarPrices/DolarPrices";
 import DolarAmmounts from "../../components/HomePage/DolarAmounts/DolarAmounts";
@@ -187,10 +184,7 @@ class HomePage extends Component {
                     <div className="panel panel-primary panel-colorful media middle pad-all">
                       <div className="media-left">
                         <div className="pad-hor">
-                          <FontAwesomeIcon
-                            className="fa-4x"
-                            icon={faExchangeAlt}
-                          />
+                          <img style={{width: '52px'}} src={CloseImage} alt="Cierre"></img>
                         </div>
                       </div>
                       <div className="media-body">
@@ -205,10 +199,7 @@ class HomePage extends Component {
                     <div className="panel panel-primary panel-colorful media middle pad-all">
                       <div className="media-left">
                         <div className="pad-hor">
-                          <FontAwesomeIcon
-                            className="fa-4x"
-                            icon={faExchangeAlt}
-                          />
+                        <img style={{width: '52px'}} src={Average} alt="Promedio"></img>
                         </div>
                       </div>
                       <div className="media-body">

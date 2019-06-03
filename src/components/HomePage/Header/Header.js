@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./Header.css";
-import logo from "../../../assets/img/SET-ICAP FX neg.png";
+import logo from "../../../assets/img/dolar-fx-logo.png";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faUser} from '@fortawesome/free-solid-svg-icons';
 import {Link} from 'react-router-dom';
@@ -17,8 +17,8 @@ const homeHeader = props => {
             <img className={classes.MainLogo} alt="set-fx logo" src={logo} />
           </div>
           <div className="col-md-8">
-            <div className={['container', classes.ContainerButtons].join(' ')}>
-            <div className="col-md-8 col-md-push-4">
+            <div className={[, classes.ContainerButtons].join(' ')}>
+            <div style={{ position: 'absolute', right: '40px', top: '0'}}>
             {props.auth.token === '' ? 
             <React.Fragment><Link to={`/auth/create-account/`} className={['btn', 'btn-warning', classes.HeaderButton].join(' ')}>
               Regístrese y obtenga una Demo

@@ -18,6 +18,10 @@
     margin-bottom: 10px;
 }
 
+.PoweredByEpayco img{
+    width: 100%;
+}
+
 .SetFXNegative{
     width: 100%;
     margin-top: 25%;
@@ -44,11 +48,9 @@
 
 .FooterMiddle{
     line-height: 4em;
-    margin-top: 3em;
+    margin-top: 10px;
     height: 110px;
     padding-top: 0;
-    border-left: 1px solid white;
-    border-right: 1px solid white;
     padding-left: 60px;
     color: white !important;
 }
@@ -59,19 +61,27 @@
 }
 
 .LastMiddle{
-    margin-top: 2em;
+    margin-top: 10px;
     color: white !important;
 }
 
-.LastMiddle h4{
+.LastMiddle h5{
     color:white;
 }
 
 .LastMiddle ul{
-    line-height: 3em;
+    line-height: 2.8em;
+    padding-left: 0;
 }
 
 .LastMiddle ul li a{
     color: white;
     cursor: pointer;
+}
+
+.Address{
+    line-height: 3.2em;
+    margin-top: 10px;
+    list-style: none;
+    color: white;
 }

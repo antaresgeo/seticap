@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../../assets/img/SET-ICAP FX neg.png";
+import logo from "../../../assets/img/dolar-fx-logo.png";
 import logosm from '../../../assets/img/cross-seticap.png';
 import { Link } from "react-router-dom";
 import classes from "./Header.css";

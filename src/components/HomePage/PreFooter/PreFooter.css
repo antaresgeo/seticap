@@ -19,16 +19,14 @@
 }
 
 .SetTPLogo{
-    height: 140px;
+    width: 33%;
     padding: 10px;
 }
 
-@media screen and (max-width: 991px){
-    .HDivider{
-        display: none;
-    }
-    .SetFXLogo{
-        margin-left: 0;
-    margin-top: 0;
-    }
+.SFCLogo{
+    width: 33%;
+}
+
+.BVCLogo{
+    width: 33%;
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import poweredePayco from '../../../assets/img/powered_01.png';
-import setFXNegative from '../../../assets/img/SET-ICAP FX neg.png';
+import setFXNegative from '../../../assets/img/dolar-fx-logo.png';
 import classes from './Footer.css'
 const Footer = (props) => {
     return (
@@ -24,7 +24,7 @@ const Footer = (props) => {
                 <div className="col-md-3">
                     <div className={classes.LastMiddle}>
                     <div className="col-md-12">
-                        <h4>Mapa del sitio</h4>
+                        <h5>Mapa del sitio</h5>
                     </div>
                     <div className="col-md-6">
                         <ul>
@@ -41,7 +41,7 @@ const Footer = (props) => {
                     </div>
                 </div>
                 <div className="col-md-3">
-                    <ul>
+                    <ul class={classes.Address}>
                         <li>Cra. 11 No. 93 - 46 Oficina 403</li>
                         <li>Llámenos: +57 (1) 742 77 77</li>
                         <li>Escríbanos: info@set-icap.co</li>
