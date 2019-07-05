@@ -1,6 +1,8 @@
 import React from "react";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faDollarSign, faCalendarAlt} from '@fortawesome/free-solid-svg-icons';
+import classes from './Navbar.css';
+
 const navbar = props => {
   return (
     <div className="boxed">
@@ -10,7 +12,7 @@ const navbar = props => {
             <div className="nano">
               <div className="nano-content" tabIndex="0">
                 <ul id="mainnav-menu" className="list-group">
-                  <li className="list-header">Menu</li>
+                  <li className={["list-header", classes.MarketTitle].join(' ')}>Mercado</li>
                   <li className={props.market === 'spot' ? 'active-sub' : ''}>
                     <a onClick={() => props.changeMarket('spot')}>
                       <FontAwesomeIcon icon={faDollarSign} style={{fontSize: '1.4em', marginRight: "5px"}}/>

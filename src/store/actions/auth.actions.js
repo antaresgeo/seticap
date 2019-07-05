@@ -1,9 +1,13 @@
 import { authActionTypes } from "../actions/actionTypes";
-import { Http, AuthHttp } from "../../axiosInstances";
+import { Http, AuthHttp, HttpNode } from "../../axiosInstances";
+import md5 from 'md5';
 
 export const login = (user, password, history) => {
     return dispatch => {
         dispatch(authStart());
+        HttpNode.get(`/seticap/api/users/${user}/${md5(password)}/`)
+            .then(response => console.log(response));
+
         Http.post("/login/", { username: user, password: password })
             .then(response => {
                 localStorage.setItem("token", response.data.token);
@@ -61,6 +65,8 @@ const authCheckLogin = () => {
 };
 
 const logout = () => {
+    localStorage.removeItem('user');
+    localStorage.removeItem('token');
     return {
         type: authActionTypes.LOGOUT
     };

@@ -15,7 +15,7 @@ import StockIndex from '../../components/HomePage/StockIndex/StockIndex';
 import DolarSpot from "../shared/DolarSpot/DolarSpot";
 import classes from "./HomePage.css";
 import Loader from '../../components/Nifty/UI/Loader/Loader';
-import clockRewind from '../../assets/img/rewind-time.png';
+import clockRewind from '../../assets/img/transaction.png';
 import PreFooter from '../../components/HomePage/PreFooter/PreFooter';
 import Footer from "../../components/shared/Footer/Footer";
 
@@ -238,7 +238,7 @@ class HomePage extends Component {
                       </div>
                       <div className="media-body">
                         <p className="mar-no text-semibold" style={{fontSize: '1.4em'}}>
-                        Información del dólar intercambiario en tiempo real
+                        Información del dólar con 15 minutos de retraso.
                         </p>
                         <p className="mar-no" />
                       </div>

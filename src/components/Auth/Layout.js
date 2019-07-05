@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './Layout.css';
-import setIcapLogo from '../../assets/img/dolar-fx-logo.png';
+import setIcapLogo from '../../assets/img/dolar-set-fx-nobg.png';
 import {Link} from 'react-router-dom';
 const layout = (props) => {
     return(

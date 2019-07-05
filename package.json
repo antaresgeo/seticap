@@ -2,7 +2,7 @@
   "name": "fix",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://minrock.github.io/seticap",
+  "homepage": "https://minrock.github.io/",
   "dependencies": {
     "@babel/core": "7.4.3",
     "@fortawesome/fontawesome-svg-core": "^1.2.4",
@@ -41,6 +41,7 @@
     "jest-environment-jsdom-fourteen": "0.1.0",
     "jest-resolve": "24.7.1",
     "jest-watch-typeahead": "0.3.0",
+    "md5": "^2.2.1",
     "mini-css-extract-plugin": "0.5.0",
     "optimize-css-assets-webpack-plugin": "5.0.1",
     "pnp-webpack-plugin": "1.2.1",
