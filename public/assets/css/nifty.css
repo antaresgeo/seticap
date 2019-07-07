@@ -22,7 +22,7 @@
 #content-container:before {
   content: '';
   display: block;
-  height: 165px;
+  height: 60px;
   width: 100%;
   position: absolute;
   background-color: #25476a;

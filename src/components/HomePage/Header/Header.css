@@ -1,13 +1,16 @@
 .MainLogo{
-    width: 350px;
+    width: 180px;
     z-index: 1;
     position: relative;
-    margin-bottom: 0px !important;
+    margin-top: 10px;
 }
 
 .HomeRibbon{
     padding-top: 0px !important;
-    line-height: 12em;
+}
+
+.HomeRibbon::before{
+    height: 80px !important;
 }
 
 .authRibbon{

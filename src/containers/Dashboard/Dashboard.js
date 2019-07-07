@@ -4,6 +4,9 @@ import { Http } from "../../axiosInstances";
 import authActions from "../../store/actions/auth.actions";
 import DolarPrices from "../../components/HomePage/DolarPrices/DolarPrices";
 import DolarAmmounts from "../../components/HomePage/DolarAmounts/DolarAmounts";
+import CloseImage from '../../assets/img/iconos_cierre.png'
+import Average from '../../assets/img/icono_promedio.png';
+import clockRewind from '../../assets/img/rewind-time.png';
 import Header from "../../components/Dashboard/Header/Header";
 import Navbar from "../../components/Dashboard/Navbar/Navbar";
 import DolarSpot from '../shared/DolarSpot/DolarSpot';
@@ -12,6 +15,8 @@ import Currencies from "../../components/HomePage/Currencies/Currency";
 import News from "../../components/HomePage/News/News";
 import BVCStock from "../../components/HomePage/BVCStock/BVCStock";
 import StockIndex from '../../components/HomePage/StockIndex/StockIndex';
+import Footer from "../../components/shared/Footer/Footer";
+import PreFooter from '../../components/shared/PreFooter/PreFooter';
 
 const CURRENCY_REGEX = new RegExp(
   "(?<from>\\w{3})\\s+\\/\\s+(?<to>\\w{3})\\s+(?<value>[\\d\\.]+)\\s*(?<change>[\\d\\.\\+\\-]+)"
@@ -99,7 +104,7 @@ class Dashboard extends Component {
     this.setState(newState);
   };
 
-  componentDidMount(){
+  componentDidMount() {
     let now = new Date();
     Http.get(
       `/stats?${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`
@@ -188,19 +193,63 @@ class Dashboard extends Component {
         <Navbar market={this.state.market} changeMarket={this.changeMarket} />
         <div id="content-container">
 
-          <div id="page-head">
-            <div className="pad-all text-center">
-              <h2>Información del dólar intercambiario en tiempo real</h2>
-            </div>
-          </div>
-
           <div id="page-content">
+            <div style={{marginTop: "6%"}}>
+              <div className="row">
+              <div className="col-md-6">
+                  <div className="panel media middle pad-all">
+                    <div className="media-left">
+                      <div className="pad-hor">
+                        <img alt="clock" src={clockRewind} style={{ width: '52px' }}></img>
+                      </div>
+                    </div>
+                    <div className="media-body">
+                      <p className="mar-no text-semibold" style={{ fontSize: '1.4em' }}>
+                        Información del dólar en tiempo real.
+                        </p>
+                      <p className="mar-no" />
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-3">
+                  <div className="panel panel-primary panel-colorful media middle pad-all">
+                    <div className="media-left">
+                      <div className="pad-hor">
+                        <img style={{ width: '52px' }} src={CloseImage} alt="Cierre"></img>
+                      </div>
+                    </div>
+                    <div className="media-body">
+                      <p className="text-2x mar-no text-semibold">
+                        {this.state.closePrice}
+                      </p>
+                      <p className="mar-no">Cierre</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-3">
+                  <div className="panel panel-primary panel-colorful media middle pad-all">
+                    <div className="media-left">
+                      <div className="pad-hor">
+                        <img style={{ width: '52px' }} src={Average} alt="Promedio"></img>
+                      </div>
+                    </div>
+                    <div className="media-body">
+                      <p className="text-2x mar-no text-semibold">
+                        {this.state.avgPrice}
+                      </p>
+                      <p className="mar-no">Promedio</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div className="row">
               <div className="col-lg-12">
                 <div id="demo-panel-network" className="panel">
                   <div className="pad-all">
                     <div className="container-fluid">
-                      { this.state.market === 'spot' ?
+                      {this.state.market === 'spot' ?
                         <DolarSpot key="spot" market="spot" refresh={30} /> : <DolarSpot key="nextday" market="nextday" refresh={30} />}
                     </div>
                   </div>
@@ -209,43 +258,44 @@ class Dashboard extends Component {
             </div>
             <div className="row">
               <div className="col-md-3">
-                  {Object.keys(this.state.dolarPrices).length ? (
-                    <DolarPrices dolarPrices={this.state.dolarPrices} />
-                  ) : (
-                    ""
-                  )}
-              </div>
-              <div className="col-md-5">
-                  {Object.keys(this.state.dolarAmmounts).length ? (
-                    <DolarAmmounts dolarAmmounts={this.state.dolarAmmounts} />
-                  ) : (
+                {Object.keys(this.state.dolarPrices).length ? (
+                  <DolarPrices dolarPrices={this.state.dolarPrices} />
+                ) : (
                     ""
                   )}
               </div>
               <div className="col-md-4">
-                  <Currencies currencies={this.state.currencies} />
+                {Object.keys(this.state.dolarAmmounts).length ? (
+                  <DolarAmmounts dolarAmmounts={this.state.dolarAmmounts} />
+                ) : (
+                    ""
+                  )}
+              </div>
+              <div className="col-md-5">
+                <Currencies currencies={this.state.currencies} />
               </div>
             </div>
             <div className="row">
-                <div className="col-md-4">
-                  <BVCStock stocks={this.state.bvc} />
-                </div>
-                <div className="col-md-4">
-                    <StockIndex chart={this.state.stockChart} table={this.state.stockTable}></StockIndex>
-                </div>
-                <div className="col-md-4">
-                  <News news={this.state.news} />
-                </div>
+              <div className="col-md-4">
+                <BVCStock stocks={this.state.bvc} />
               </div>
+              <div className="col-md-4">
+                <StockIndex chart={this.state.stockChart} table={this.state.stockTable}></StockIndex>
+              </div>
+              <div className="col-md-4">
+                <News news={this.state.news} />
+              </div>
+            </div>
           </div>
-
+          <PreFooter></PreFooter>
+          <Footer></Footer>
         </div>
       </div>
     );
   }
 
   changeMarket = (market) => {
-    this.setState({market: market})
+    this.setState({ market: market })
   }
 
   toggleMenu = () => {

@@ -16,7 +16,7 @@ import DolarSpot from "../shared/DolarSpot/DolarSpot";
 import classes from "./HomePage.css";
 import Loader from '../../components/Nifty/UI/Loader/Loader';
 import clockRewind from '../../assets/img/transaction.png';
-import PreFooter from '../../components/HomePage/PreFooter/PreFooter';
+import PreFooter from '../../components/shared/PreFooter/PreFooter';
 import Footer from "../../components/shared/Footer/Footer";
 
 const CURRENCY_REGEX = new RegExp(
@@ -196,8 +196,8 @@ class HomePage extends Component {
         <div id="container">
           <HomeHeader auth={this.props.auth} />
           <div className="boxed">
-            <div className={['container-fluid', classes.padd20].join(' ')}>
-            <div className={classes.DolarEndDay}>
+              <div className={['container-fluid', classes.padd20].join(' ')}>
+              <div className={classes.DolarEndDay}>
                 <div className="row">
                 <div className="col-md-3">
                     <div className="panel panel-primary panel-colorful media middle pad-all">
@@ -268,14 +268,14 @@ class HomePage extends Component {
                     ""
                   )}
                 </div>
-                <div className="col-md-5">
+                <div className="col-md-4">
                   {Object.keys(this.state.dolarAmmounts).length ? (
                     <DolarAmmounts dolarAmmounts={this.state.dolarAmmounts} />
                   ) : (
                     ""
                   )}
                 </div>
-                <div className="col-md-4">
+                <div className="col-md-5">
                   <Currencies currencies={this.state.currencies} />
                 </div>
               </div>
