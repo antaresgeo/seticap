@@ -6,18 +6,29 @@ export const login = (user, password, history) => {
     return dispatch => {
         dispatch(authStart());
         HttpNode.get(`/seticap/api/users/${user}/${md5(password)}/`)
-            .then(response => console.log(response));
-
-        Http.post("/login/", { username: user, password: password })
             .then(response => {
-                localStorage.setItem("token", response.data.token);
-                localStorage.setItem("user", response.data.user);
-                dispatch(authFinished(response.data));
-                history.push("/dashboard/");
-            })
-            .catch(err => {
-                dispatch(authError(err.response.data.error));
+                if(response.data.status == 'success'){
+                    localStorage.setItem("token", md5(password));
+                    localStorage.setItem("user", response.data.user.name);
+                    localStorage.setItem("username", user);
+                    response.data.token = md5(password);
+                    dispatch(authFinished({token: md5(password), user: response.data.user.name}));
+                    history.push("/dashboard/");
+                }else{
+                    dispatch(authError("Usuario/Contraseña incorrectos"));
+                }
             });
+
+            /*Http.post("/login/", { username: user, password: password })
+                .then(response => {
+                    localStorage.setItem("token", response.data.token);
+                    localStorage.setItem("user", response.data.user);
+                    dispatch(authFinished(response.data));
+                    history.push("/dashboard/");
+                })
+                .catch(err => {
+                    dispatch(authError(err.response.data.error));
+            });*/
     };
 };
 
@@ -51,15 +62,18 @@ const authCheckLogin = () => {
     return dispatch => {
         dispatch(autoLogin());
         const token = localStorage.getItem("token");
-        if (token !== "") {
-            AuthHttp.get("/check/login/").then(({ data }) => {
-                if (data.active) {
+        const user = localStorage.getItem("username");
+        if (token) {
+            HttpNode.get(`/seticap/api/users/${user}/${token}/`).then(({ data }) => {
+                if (data.status == 'success') {
                     const user = localStorage.getItem("user");
                     dispatch(authFinished({ token, user }));
                 } else {
                     dispatch(logout());
                 }
             });
+        }else{
+            dispatch(logout());
         }
     };
 };
@@ -67,6 +81,7 @@ const authCheckLogin = () => {
 const logout = () => {
     localStorage.removeItem('user');
     localStorage.removeItem('token');
+    localStorage.removeItem('username');
     return {
         type: authActionTypes.LOGOUT
     };

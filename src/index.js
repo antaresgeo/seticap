@@ -4,7 +4,7 @@ import "./index.css";
 
 import App from "./App";
 import * as serviceWorker from './serviceWorker';
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 
 import thunk from "redux-thunk";
 import { Provider } from 'react-redux';
@@ -19,9 +19,9 @@ const store = createStore(
 
 const app = (
   <Provider store={store}>
-    <BrowserRouter basename={process.env.REACT_APP_BASEPATH}>
+    <HashRouter basename={process.env.REACT_APP_BASEPATH}>
       <App />
-    </BrowserRouter>
+    </HashRouter>
   </Provider>
 );
 
