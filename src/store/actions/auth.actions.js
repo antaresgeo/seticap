@@ -1,5 +1,5 @@
 import { authActionTypes } from "../actions/actionTypes";
-import { Http, AuthHttp, HttpNode } from "../../axiosInstances";
+import {HttpNode } from "../../axiosInstances";
 import md5 from 'md5';
 
 export const login = (user, password, history) => {
@@ -18,17 +18,6 @@ export const login = (user, password, history) => {
                     dispatch(authError("Usuario/Contraseña incorrectos"));
                 }
             });
-
-            /*Http.post("/login/", { username: user, password: password })
-                .then(response => {
-                    localStorage.setItem("token", response.data.token);
-                    localStorage.setItem("user", response.data.user);
-                    dispatch(authFinished(response.data));
-                    history.push("/dashboard/");
-                })
-                .catch(err => {
-                    dispatch(authError(err.response.data.error));
-            });*/
     };
 };
 

@@ -1,7 +1,8 @@
 import React from "react";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faDollarSign, faCalendarAlt} from '@fortawesome/free-solid-svg-icons';
+import {faDollarSign, faCalendarAlt, faTable} from '@fortawesome/free-solid-svg-icons';
 import classes from './Navbar.css';
+import { Link } from "react-router-dom";
 
 const navbar = props => {
   return (
@@ -14,22 +15,22 @@ const navbar = props => {
                 <ul id="mainnav-menu" className="list-group">
                   <li className={["list-header", classes.MarketTitle].join(' ')}>Mercado</li>
                   <li className={props.market === 'spot' ? 'active-sub' : ''}>
-                    <a onClick={() => props.changeMarket('spot')}>
+                    <Link to="/dashboard/spot/">
                       <FontAwesomeIcon icon={faDollarSign} style={{fontSize: '1.4em', marginRight: "5px"}}/>
                       <span className="menu-title"> Spot USD/COP</span>
-                    </a>
+                    </Link>
                   </li>
                   <li className={props.market === 'nextday' ? 'active-sub' : ''}>
-                    <a onClick={() => props.changeMarket('nextday')}>
+                    <Link to="/dashboard/nextday/">
                       <FontAwesomeIcon icon={faCalendarAlt} style={{fontSize: '1.4em', marginRight: "5px"}}/>
                       <span className="menu-title"> Next day USD/COP</span>
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a data-original-title="" title="">
-                      <i className="demo-pli-gear" />
+                    <Link to="/dashboard/statistics/">
+                    <FontAwesomeIcon icon={faTable} style={{fontSize: '1.4em', marginRight: "5px"}}/>
                       <span className="menu-title">Estadisticas</span>
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
