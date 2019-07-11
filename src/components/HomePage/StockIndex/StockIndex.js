@@ -41,8 +41,6 @@ class StockIndex extends React.Component{
         if(this.props.chart){
             const labels = this.props.chart.map(elem => elem[0]);
             const values = this.props.chart.map(elem => elem[1]);
-            console.log(values)
-            console.log(labels)
             let ctx = document.getElementById("StockIndex").getContext("2d");
             const config = {
                 type: 'line',

@@ -245,7 +245,7 @@ class DashboardHome extends Component {
                 <div className="pad-all">
                 <div className="container-fluid">
                     {this.props.match.params.market === 'spot' ?
-                    <DolarSpot key="spot" market="spot" refresh={30} /> : <DolarSpot key="nextday" market="nextday" refresh={30} />}
+                    <DolarSpot key="spot" market="spot" delay="0" /> : <DolarSpot key="nextday" market="nextday" delay="0" />}
                 </div>
                 </div>
             </div>

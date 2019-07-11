@@ -106,7 +106,6 @@ class HomePage extends Component {
   componentDidMount() {
     let now = new Date();
     Http.get('/news/rss/').then(response => {
-      console.log(response.data);
       const news = response.data.item.map(elem => {
         return {
           ...elem,
