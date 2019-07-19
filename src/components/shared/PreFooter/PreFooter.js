@@ -6,22 +6,25 @@ import bvcLogo from '../../../assets/img/logo-bvc.png';
 import SFCLogo from '../../../assets/img/vigilado-sfc.png';
 const prefooter = (props) => {
     return (
-    <div className="row">
-        <div className={['col-lg-12', classes.VDivider].join(' ')}>
+    <React.Fragment>
+        <div className="row">
+            <div className={['col-12', classes.VDivider].join(' ')}></div>
         </div>
-        <div className="col-lg-2 col-md-2"></div>
-        <div className="col-lg-3 col-xs-6">
-            <img alt="set Icap logo" className={classes.SetFXLogo} src={setFXlogo} />
-            <div className={classes.HDivider}></div>
+        <div className="row">
+            <div className="col-xs-12 col-sm-6 col-lg-4">
+                <img alt="set Icap logo" className={classes.SetFXLogo} src={setFXlogo} />
+                {/* <div className={classes.HDivider}></div> */}
+            </div>
+            <div className="col-xs-12 col-sm-12 col-lg-8">
+                <img src={setTPlogo} className={classes.SetTPLogo} alt="icap-tp logo"/>
+                <img src={bvcLogo} className={classes.BVCLogo} alt="bvc logo"/>
+                <img src={SFCLogo} className={classes.SFCLogo} alt="superindustria financiera colombia logo"/>
+            </div>
         </div>
-        <div className="col-lg-6 col-xs-6">
-            <img src={setTPlogo} className={classes.SetTPLogo} alt="icap-tp logo"/>
-            <img src={bvcLogo} className={classes.BVCLogo} alt="bvc logo"/>
-            <img src={SFCLogo} className={classes.SFCLogo} alt="superindustria financiera colombia logo"/>
+        <div className="row">
+            <div className={['col-12', classes.VDivider].join(' ')}></div>
         </div>
-        <div className={['col-lg-12', classes.VDivider].join(' ')}></div>
-    </div>
-    )
+    </React.Fragment>)
 }
 
 
