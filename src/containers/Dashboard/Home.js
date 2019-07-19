@@ -259,7 +259,7 @@ class DashboardHome extends Component {
                 ""
                 )}
             </div>
-            <div className="col-md-4">
+            <div className="col-sm-4">
             {Object.keys(this.state.dolarAmmounts).length ? (
                 <DolarAmmounts dolarAmmounts={this.state.dolarAmmounts} />
             ) : (
@@ -271,13 +271,13 @@ class DashboardHome extends Component {
             </div>
         </div>
         <div className="row">
-            <div className="col-md-4">
+            <div className="col-sm-4">
             <BVCStock stocks={this.state.bvc} />
             </div>
-            <div className="col-md-4">
+            <div className="col-sm-4">
             <StockIndex chart={this.state.stockChart} table={this.state.stockTable}></StockIndex>
             </div>
-            <div className="col-md-4">
+            <div className="col-sm-4">
             <News news={this.state.news} />
             </div>
         </div>

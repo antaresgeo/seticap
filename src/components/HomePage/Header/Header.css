@@ -9,9 +9,9 @@
     padding-top: 0px !important;
 }
 
-.HomeRibbon::before{
+/* .HomeRibbon::before{
     height: 80px !important;
-}
+} */
 
 .authRibbon{
     height: 3em;
@@ -44,7 +44,6 @@
     height: 40px;
     border-right: solid 2px white;
     margin-right: 15px;
-    top: 15px;
 }
 
 .BTNEpayco{
@@ -61,5 +60,5 @@
     display: block;
     height: 1em;
     margin-top: -18px;
-    margin-bottom: 18px;
+    margin-bottom: 6px;
 }

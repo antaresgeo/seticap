@@ -24,24 +24,24 @@
 
 .SetFXNegative{
     width: 100%;
-    margin-top: 25%;
-    min-width: 200px;
+    margin-top: 25px;
+    max-width: 200px;
 }
 
 .SiteMap{
     background-color: #25476A;
-    height: 180px;
+    /* height: 180px; */
 }
 
 .Col100{
-    min-height: 180px !important;
+    /* min-height: 180px !important; */
 }
 
 .SitemapBackground{
     position: absolute;
     bottom: 3em;
     left: 0;
-    height: 180px;
+    height: 218px;
     background-color: #25476A;
     width: 100%;
 }
@@ -63,6 +63,7 @@
 .LastMiddle{
     margin-top: 10%;
     color: white !important;
+    padding-left: 50px;
 }
 
 .LastMiddle h5{
