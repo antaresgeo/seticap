@@ -192,7 +192,7 @@ class HomePage extends Component {
     return (
       <React.Fragment>
         {this.props.auth.logginIn ? <Loader opacity="0.8"></Loader> : null}
-        <div id="container">
+        <div id="container" className="home_page">
           <HomeHeader auth={this.props.auth} />
           <div className="boxed">
               <div className={['container-fluid', classes.padd20].join(' ')}>
@@ -267,7 +267,7 @@ class HomePage extends Component {
                     ""
                   )}
                 </div>
-                <div className="col-md-4">
+                <div className="col-sm-4">
                   {Object.keys(this.state.dolarAmmounts).length ? (
                     <DolarAmmounts dolarAmmounts={this.state.dolarAmmounts} />
                   ) : (
@@ -279,13 +279,13 @@ class HomePage extends Component {
                 </div>
               </div>
               <div className="row">
-                <div className="col-md-4">
+                <div className="col-sm-4">
                   <BVCStock stocks={this.state.bvc} />
                 </div>
-                <div className="col-md-4">
+                <div className="col-sm-4">
                     <StockIndex chart={this.state.stockChart} table={this.state.stockTable}></StockIndex>
                 </div>
-                <div className="col-md-4">
+                <div className="col-sm-4">
                   <News news={this.state.news} />
                 </div>
               </div>
