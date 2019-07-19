@@ -55,8 +55,9 @@ class DolarSpotChart extends Component {
 
   componentDidMount() {
     this.getChartData();
-    if (this.props.refresh !== undefined) {
-      this.interval = setInterval(this.getChartData.bind(this), this.props.refresh * 1000)
+    if (this.props.delay !== undefined) {
+      let delay = this.props.delay == 0 ? 1 : this.props.delay;
+      this.interval = setInterval(this.getChartData.bind(this), delay * 1000 * 60)
     }
   }
 
@@ -65,8 +66,7 @@ class DolarSpotChart extends Component {
     if (
       !this.state.loaded &&
       this.state.labels.length &&
-      this.state.dolarValueData.length &&
-      this.state.mountUSD
+      this.state.dolarValueData.length
     ) {
 
       let ctx = document.getElementById("DolarSpotChart").getContext("2d");
