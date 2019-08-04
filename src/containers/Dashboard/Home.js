@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Http } from "../../axiosInstances";
+import { Http, HttpNode } from "../../axiosInstances";
 import DolarPrices from "../../components/HomePage/DolarPrices/DolarPrices";
 import DolarAmmounts from "../../components/HomePage/DolarAmounts/DolarAmounts";
 import CloseImage from '../../assets/img/iconos_cierre.png'
@@ -33,33 +33,6 @@ class DashboardHome extends Component {
   };
 
   interval = null;
-
-  mapDolarPrices = stats => {
-    const dolarPrices = {
-      trm: {
-        price: stats.trm,
-        change: stats.trmPriceChange
-      },
-      openPrice: {
-        price: stats.openPrice,
-        change: stats.openPriceChange
-      },
-      minPrice: {
-        price: stats.minPrice,
-        change: stats.minPriceChange
-      },
-      maxPrice: {
-        price: stats.maxPrice,
-        change: stats.maxPriceChange
-      }
-    };
-
-    const newState = {
-      ...this.state,
-      dolarPrices: dolarPrices
-    };
-    this.setState(newState);
-  };
 
   mapAmmountPrices = stats => {
     const ammountPrices = {
@@ -112,17 +85,55 @@ class DashboardHome extends Component {
 
   onMount() {
     let now = new Date();
-    Http.get(
-      `/stats?${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`
-    ).then(response => {
-      this.mapDolarPrices(response.data);
-      this.mapAmmountPrices(response.data);
+
+    const month = now.getMonth() < 8 ? `0${now.getMonth() + 1}` : '' + now.getMonth() + 1
+
+    HttpNode.post(`seticap/api/estadisticas/estadisticasPromedioCierre/`, {
+      fecha: `${now.getFullYear()}-${month}-${now.getDate()}`,
+      mercado: 71, // USD for now
+      delay: 0
+    }).then(response => {
       this.setState({
         ...this.state,
-        closePrice: response.data.closePrice,
-        avgPrice: response.data.avgPrice
-      });
+        closePrice: response.data.data.close,
+        avgPrice: response.data.data.avg
+      })
     });
+
+    HttpNode.post(`seticap/api/estadisticas/estadisticasPrecioMercado/`, {
+      fecha: `${now.getFullYear()}-${month}-${now.getDate()}`,
+      mercado: 71, //USD for now
+      delay: 0
+    }).then(response => {
+      this.setState({
+        ...this.state,
+        dolarPrices:{
+          trm: {price: response.data.data.trm},
+          openPrice: {price: response.data.data.open},
+          minPrice: {price: response.data.data.low},
+          maxPrice: {price: response.data.data.high}
+        }
+      })
+    })
+
+    HttpNode.post(`seticap/api/estadisticas/estadisticasMontoMercado/`, {
+      fecha: `${now.getFullYear()}-${month}-${now.getDate()}`,
+      mercado: 71, //USD for now.
+      delay: 0
+    }).then(response => {
+      console.log(response);
+      this.setState({
+        ...this.state,
+        dolarAmmounts: {
+          totalAmmount: response.data.data.sum,
+          latestAmmount: response.data.data.close,
+          avgAmmount: response.data.data.avg,
+          minAmmount: response.data.data.low,
+          maxAmmount: response.data.data.high,
+          transactions: response.data.data.count
+        }
+      })
+    })
 
     Http.get('/news/rss/').then(response => {
       const news = response.data.item.map(elem => {
