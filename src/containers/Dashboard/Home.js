@@ -8,10 +8,10 @@ import clockRewind from '../../assets/img/rewind-time.png';
 import DolarSpot from '../shared/DolarSpot/DolarSpot';
 import Currencies from "../../components/HomePage/Currencies/Currency";
 import News from "../../components/HomePage/News/News";
-import BVCStock from "../../components/HomePage/BVCStock/BVCStock";
 import StockIndex from '../../components/HomePage/StockIndex/StockIndex';
 import Footer from "../../components/shared/Footer/Footer";
 import PreFooter from '../../components/shared/PreFooter/PreFooter';
+import ChartSwitcher from '../../components/Dashboard/ChartSwitcher/ChartSwitcher';
 
 const CURRENCY_REGEX = new RegExp(
   "(?<from>\\w{3})\\s+\\/\\s+(?<to>\\w{3})\\s+(?<value>[\\d\\.]+)\\s*(?<change>[\\d\\.\\+\\-]+)"
@@ -121,7 +121,6 @@ class DashboardHome extends Component {
       mercado: 71, //USD for now.
       delay: 0
     }).then(response => {
-      console.log(response);
       this.setState({
         ...this.state,
         dolarAmmounts: {
@@ -282,13 +281,13 @@ class DashboardHome extends Component {
             </div>
         </div>
         <div className="row">
-            <div className="col-sm-4">
-            <BVCStock stocks={this.state.bvc} />
+            <div className="col-sm-5">
+            <ChartSwitcher/>
             </div>
             <div className="col-sm-4">
             <StockIndex chart={this.state.stockChart} table={this.state.stockTable}></StockIndex>
             </div>
-            <div className="col-sm-4">
+            <div className="col-sm-3">
             <News news={this.state.news} />
             </div>
         </div>

@@ -151,7 +151,6 @@ class HomePage extends Component {
       mercado: 71, //USD for now.
       delay: 0
     }).then(response => {
-      console.log(response);
       this.setState({
         ...this.state,
         dolarAmmounts: {

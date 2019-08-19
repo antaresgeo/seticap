@@ -15,8 +15,7 @@ class DolarSpotChart extends Component {
 
   getChartData() {
     const delay = this.props.delay ? this.props.delay : '15'
-    const today = new Date()
-    console.log(`${today.getFullYear()}-${(today.getMonth() + 1).toString().padStart(2, '0')}-${(today.getDate()).toString().padStart(2, '0')}`);
+    const today = new Date();
     HttpNode.post('seticap/api/graficos/graficoMoneda', {
       "fecha": `${today.getFullYear()}-${(today.getMonth() + 1).toString().padStart(2, '0')}-${(today.getDate()).toString().padStart(2, '0')}`,
       "moneda": 1,
