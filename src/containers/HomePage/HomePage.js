@@ -138,10 +138,10 @@ class HomePage extends Component {
       this.setState({
         ...this.state,
         dolarPrices:{
-          trm: {price: response.data.data.trm},
-          openPrice: {price: response.data.data.open},
-          minPrice: {price: response.data.data.low},
-          maxPrice: {price: response.data.data.high}
+          trm: {price: response.data.data.trm, change: response.data.data.trmchange},
+          openPrice: {price: response.data.data.open, change: response.data.data.openchange},
+          minPrice: {price: response.data.data.low}, change: response.data.data.lowchange,
+          maxPrice: {price: response.data.data.high, change: response.data.data.highchange}
         }
       })
     })

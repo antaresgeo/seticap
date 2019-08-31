@@ -7,7 +7,7 @@ export const login = (user, password, history) => {
         dispatch(authStart());
         HttpNode.get(`/seticap/api/users/${user}/${md5(password)}/`)
             .then(response => {
-                if(response.data.status == 'success'){
+                if(response.data.status === 'success'){
                     localStorage.setItem("token", md5(password));
                     localStorage.setItem("user", response.data.user.name);
                     localStorage.setItem("username", user);
@@ -54,7 +54,7 @@ const authCheckLogin = () => {
         const user = localStorage.getItem("username");
         if (token) {
             HttpNode.get(`/seticap/api/users/${user}/${token}/`).then(({ data }) => {
-                if (data.status == 'success') {
+                if (data.status === 'success') {
                     const user = localStorage.getItem("user");
                     dispatch(authFinished({ token, user }));
                 } else {

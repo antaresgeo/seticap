@@ -22,7 +22,6 @@ class AverageChart extends Component{
     }
 
     componentDidUpdate(prevProps){
-        console.log(prevProps.period, this.props.period);
         if(prevProps.period != this.props.period || prevProps.market != this.props.market){
             this.mountChart();
         }

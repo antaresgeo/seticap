@@ -8,7 +8,6 @@ import clockRewind from '../../assets/img/rewind-time.png';
 import DolarSpot from '../shared/DolarSpot/DolarSpot';
 import Currencies from "../../components/HomePage/Currencies/Currency";
 import News from "../../components/HomePage/News/News";
-import StockIndex from '../../components/HomePage/StockIndex/StockIndex';
 import Footer from "../../components/shared/Footer/Footer";
 import PreFooter from '../../components/shared/PreFooter/PreFooter';
 import ChartSwitcher from '../../components/Dashboard/ChartSwitcher/ChartSwitcher';
@@ -20,6 +19,9 @@ const CURRENCY_REGEX = new RegExp(
 const BVC_REGEX = new RegExp(
   "(?<stock>[A-Za-z]+)(?<stock_value>\\d*\\.*\\d{1,3}\\,\\d{2})(?<stock_change>\\-*\\d+\\.*\\d*)"
 );
+
+
+
 
 class DashboardHome extends Component {
   state = {
@@ -33,6 +35,11 @@ class DashboardHome extends Component {
   };
 
   interval = null;
+
+  MARKET_MAP = {
+    'spot': 71,
+    'nexday': 76
+  }
 
   mapAmmountPrices = stats => {
     const ammountPrices = {
@@ -90,7 +97,7 @@ class DashboardHome extends Component {
 
     HttpNode.post(`seticap/api/estadisticas/estadisticasPromedioCierre/`, {
       fecha: `${now.getFullYear()}-${month}-${now.getDate()}`,
-      mercado: 71, // USD for now
+      mercado: this.MARKET_MAP[this.state.market], // USD for now
       delay: 0
     }).then(response => {
       this.setState({
@@ -102,7 +109,7 @@ class DashboardHome extends Component {
 
     HttpNode.post(`seticap/api/estadisticas/estadisticasPrecioMercado/`, {
       fecha: `${now.getFullYear()}-${month}-${now.getDate()}`,
-      mercado: 71, //USD for now
+      mercado: this.MARKET_MAP[this.state.market], //USD for now
       delay: 0
     }).then(response => {
       this.setState({
@@ -118,7 +125,7 @@ class DashboardHome extends Component {
 
     HttpNode.post(`seticap/api/estadisticas/estadisticasMontoMercado/`, {
       fecha: `${now.getFullYear()}-${month}-${now.getDate()}`,
-      mercado: 71, //USD for now.
+      mercado: this.MARKET_MAP[this.state.market], //USD for now.
       delay: 0
     }).then(response => {
       this.setState({
@@ -281,11 +288,8 @@ class DashboardHome extends Component {
             </div>
         </div>
         <div className="row">
-            <div className="col-sm-5">
+            <div className="col-sm-9">
             <ChartSwitcher/>
-            </div>
-            <div className="col-sm-4">
-            <StockIndex chart={this.state.stockChart} table={this.state.stockTable}></StockIndex>
             </div>
             <div className="col-sm-3">
             <News news={this.state.news} />
