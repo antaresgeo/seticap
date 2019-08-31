@@ -21,8 +21,6 @@ const BVC_REGEX = new RegExp(
 );
 
 
-
-
 class DashboardHome extends Component {
   state = {
     largeMenu: true,
