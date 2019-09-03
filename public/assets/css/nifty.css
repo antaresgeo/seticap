@@ -844,8 +844,8 @@ h6,
 }
 
 .navbar-top-links .tgl-menu-btn {
-    position: absolute;
-    left: 0;
+    /* position: absolute;
+    left: 0; */
 }
 
 .navbar-top-links .tgl-menu-btn>a,
@@ -1035,7 +1035,7 @@ h6,
 /*======================================*/
 @media (max-width: 760px) {
     .navbar-top-links>li {
-        position: static;
+        /* position: static; */
     }
 
     .navbar-top-links .dropdown-menu {
@@ -1768,6 +1768,34 @@ h6,
         left: 0;
     }
 
+    #container.mainnav-lg #mainnav-menu-wrap {
+        height: 100%;
+    }
+}
+
+
+@media (min-width: 300px) and (max-width: 767px) {
+
+    #container.mainnav-lg #content-container,
+    #container.mainnav-lg #footer {
+        left: 0;
+    }
+
+    #container.mainnav-lg .tgl-menu-btn {
+        right: 5px;
+    }
+
+    #container.mainnav-lg #mainnav-container {
+        left: 0;
+        top: 59px;
+        width: 100%;
+        background: rgba(219, 219, 219, 0.4)
+    }
+
+    #container.mainnav-lg #mainnav-container #mainnav {
+        width: 220px;
+    }
+    
     #container.mainnav-lg #mainnav-menu-wrap {
         height: 100%;
     }
@@ -10619,6 +10647,7 @@ a.disabled-link:hover {
 }
 .row.foo{
     padding: 16px;
+    padding-top: 43px;
 }
 
 @media only screen and (max-width: 612px) {

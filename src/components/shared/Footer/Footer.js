@@ -29,14 +29,10 @@ const Footer = (props) => {
                             <div className="col-md-12 col-sm-12">
                                 <h5>Mapa del sitio</h5>
                             </div>
-                            <div className="col-md-6">
+                            <div className="col-md-12">
                                 <ul>
                                     <li><a>Productos y Servicios</a></li>
                                     <li><a>Mercado Cambiario</a></li>
-                                </ul>
-                            </div>
-                            <div className="col-md-6">
-                                <ul>
                                     <li><a>SET - FX</a></li>
                                     <li><a>Contacto</a></li>
                                 </ul>

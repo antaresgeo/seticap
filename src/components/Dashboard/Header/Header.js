@@ -15,8 +15,13 @@ const header = props => {
   return (
     <header id="navbar">
       <div id="navbar-container" className="boxed">
-      <div className={[classes.HeaderLogoDiv, props.largeMenu ? '' : classes.HeaderLogoDivSM].join(' ')}>
-        {props.largeMenu ?
+
+        <div className="navbar-content">
+          <div className={[classes.HeaderLogoDiv, props.largeMenu ? '' : classes.HeaderLogoDivSM].join(' ')}>
+            <Link to="/">
+              <img src={logosm} alt="Set ICAP logo sm" className={classes.HeaderLogoSM} />
+            </Link>
+            {/* {props.largeMenu ?
           <Link to="/">
             <img src={logo} alt="Set ICAP Logo" className={classes.HeaderLogo} />
           </Link>
@@ -24,10 +29,9 @@ const header = props => {
           <Link to ="/">
             <img src={logosm} alt="Set ICAP logo sm" className={classes.HeaderLogoSM}/>
           </Link>
-        }
-        </div> 
-        <div className="navbar-content">
-          <ul className="nav navbar-top-links">
+        } */}
+          </div>
+          <ul className="nav navbar-top-links" style={{position: 'absolute', left: '60px'}}>
             <li className="tgl-menu-btn">
               <a className="mainnav-toggle" onClick={props.actions.toggleMenu}>
                 <FontAwesomeIcon icon={faBars} />
@@ -36,7 +40,7 @@ const header = props => {
           </ul>
           <ul className="nav navbar-top-links">
             <li>
-                <span className={classes.WelcomeName}>{`Bienvenido(a) ${props.user}`}</span></li>
+              <span className={classes.WelcomeName}>{`Bienvenido(a) ${props.user}`}</span></li>
             <DropDown user={props.user} icon={faUser}>
               <ul className="head-list">
                 <li>
