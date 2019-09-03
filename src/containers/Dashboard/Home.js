@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Http } from "../../axiosInstances";
+import { Http, HttpNode } from "../../axiosInstances";
 import DolarPrices from "../../components/HomePage/DolarPrices/DolarPrices";
 import DolarAmmounts from "../../components/HomePage/DolarAmounts/DolarAmounts";
 import CloseImage from '../../assets/img/iconos_cierre.png'
@@ -8,10 +8,9 @@ import clockRewind from '../../assets/img/rewind-time.png';
 import DolarSpot from '../shared/DolarSpot/DolarSpot';
 import Currencies from "../../components/HomePage/Currencies/Currency";
 import News from "../../components/HomePage/News/News";
-import BVCStock from "../../components/HomePage/BVCStock/BVCStock";
-import StockIndex from '../../components/HomePage/StockIndex/StockIndex';
 import Footer from "../../components/shared/Footer/Footer";
 import PreFooter from '../../components/shared/PreFooter/PreFooter';
+import ChartSwitcher from '../../components/Dashboard/ChartSwitcher/ChartSwitcher';
 
 const CURRENCY_REGEX = new RegExp(
   "(?<from>\\w{3})\\s+\\/\\s+(?<to>\\w{3})\\s+(?<value>[\\d\\.]+)\\s*(?<change>[\\d\\.\\+\\-]+)"
@@ -20,6 +19,7 @@ const CURRENCY_REGEX = new RegExp(
 const BVC_REGEX = new RegExp(
   "(?<stock>[A-Za-z]+)(?<stock_value>\\d*\\.*\\d{1,3}\\,\\d{2})(?<stock_change>\\-*\\d+\\.*\\d*)"
 );
+
 
 class DashboardHome extends Component {
   state = {
@@ -34,32 +34,10 @@ class DashboardHome extends Component {
 
   interval = null;
 
-  mapDolarPrices = stats => {
-    const dolarPrices = {
-      trm: {
-        price: stats.trm,
-        change: stats.trmPriceChange
-      },
-      openPrice: {
-        price: stats.openPrice,
-        change: stats.openPriceChange
-      },
-      minPrice: {
-        price: stats.minPrice,
-        change: stats.minPriceChange
-      },
-      maxPrice: {
-        price: stats.maxPrice,
-        change: stats.maxPriceChange
-      }
-    };
-
-    const newState = {
-      ...this.state,
-      dolarPrices: dolarPrices
-    };
-    this.setState(newState);
-  };
+  MARKET_MAP = {
+    'spot': 71,
+    'nexday': 76
+  }
 
   mapAmmountPrices = stats => {
     const ammountPrices = {
@@ -112,17 +90,54 @@ class DashboardHome extends Component {
 
   onMount() {
     let now = new Date();
-    Http.get(
-      `/stats?${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`
-    ).then(response => {
-      this.mapDolarPrices(response.data);
-      this.mapAmmountPrices(response.data);
+
+    const month = now.getMonth() < 8 ? `0${now.getMonth() + 1}` : '' + now.getMonth() + 1
+
+    HttpNode.post(`seticap/api/estadisticas/estadisticasPromedioCierre/`, {
+      fecha: `${now.getFullYear()}-${month}-${now.getDate()}`,
+      mercado: this.MARKET_MAP[this.state.market], // USD for now
+      delay: 0
+    }).then(response => {
       this.setState({
         ...this.state,
-        closePrice: response.data.closePrice,
-        avgPrice: response.data.avgPrice
-      });
+        closePrice: response.data.data.close,
+        avgPrice: response.data.data.avg
+      })
     });
+
+    HttpNode.post(`seticap/api/estadisticas/estadisticasPrecioMercado/`, {
+      fecha: `${now.getFullYear()}-${month}-${now.getDate()}`,
+      mercado: this.MARKET_MAP[this.state.market], //USD for now
+      delay: 0
+    }).then(response => {
+      this.setState({
+        ...this.state,
+        dolarPrices:{
+          trm: {price: response.data.data.trm},
+          openPrice: {price: response.data.data.open},
+          minPrice: {price: response.data.data.low},
+          maxPrice: {price: response.data.data.high}
+        }
+      })
+    })
+
+    HttpNode.post(`seticap/api/estadisticas/estadisticasMontoMercado/`, {
+      fecha: `${now.getFullYear()}-${month}-${now.getDate()}`,
+      mercado: this.MARKET_MAP[this.state.market], //USD for now.
+      delay: 0
+    }).then(response => {
+      this.setState({
+        ...this.state,
+        dolarAmmounts: {
+          totalAmmount: response.data.data.sum,
+          latestAmmount: response.data.data.close,
+          avgAmmount: response.data.data.avg,
+          minAmmount: response.data.data.low,
+          maxAmmount: response.data.data.high,
+          transactions: response.data.data.count
+        }
+      })
+    })
 
     Http.get('/news/rss/').then(response => {
       const news = response.data.item.map(elem => {
@@ -271,13 +286,10 @@ class DashboardHome extends Component {
             </div>
         </div>
         <div className="row">
-            <div className="col-sm-4">
-            <BVCStock stocks={this.state.bvc} />
+            <div className="col-sm-9">
+            <ChartSwitcher/>
             </div>
-            <div className="col-sm-4">
-            <StockIndex chart={this.state.stockChart} table={this.state.stockTable}></StockIndex>
-            </div>
-            <div className="col-sm-4">
+            <div className="col-sm-3">
             <News news={this.state.news} />
             </div>
         </div>

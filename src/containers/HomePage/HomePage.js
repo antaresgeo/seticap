@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { Http } from "../../axiosInstances";
+import { Http, HttpNode } from "../../axiosInstances";
 import CloseImage from '../../assets/img/iconos_cierre.png'
 import Average from '../../assets/img/icono_promedio.png'
 import HomeHeader from "../../components/HomePage/Header/Header";
@@ -116,17 +116,53 @@ class HomePage extends Component {
       this.mapNews(news);
     })
 
-    Http.get(
-      `/stats?${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`
-    ).then(response => {
-      this.mapDolarPrices(response.data);
-      this.mapAmmountPrices(response.data);
+    const month = now.getMonth() < 8 ? `0${now.getMonth() + 1}` : '' + now.getMonth() + 1
+
+    HttpNode.post(`seticap/api/estadisticas/estadisticasPromedioCierre/`, {
+      fecha: `${now.getFullYear()}-${month}-${now.getDate()}`,
+      mercado: 71, // USD for now
+      delay: 0
+    }).then(response => {
       this.setState({
         ...this.state,
-        closePrice: response.data.closePrice,
-        avgPrice: response.data.avgPrice
-      });
+        closePrice: response.data.data.close,
+        avgPrice: response.data.data.avg
+      })
     });
+
+    HttpNode.post(`seticap/api/estadisticas/estadisticasPrecioMercado/`, {
+      fecha: `${now.getFullYear()}-${month}-${now.getDate()}`,
+      mercado: 71, //USD for now
+      delay: 0
+    }).then(response => {
+      this.setState({
+        ...this.state,
+        dolarPrices:{
+          trm: {price: response.data.data.trm, change: response.data.data.trmchange},
+          openPrice: {price: response.data.data.open, change: response.data.data.openchange},
+          minPrice: {price: response.data.data.low}, change: response.data.data.lowchange,
+          maxPrice: {price: response.data.data.high, change: response.data.data.highchange}
+        }
+      })
+    })
+
+    HttpNode.post(`seticap/api/estadisticas/estadisticasMontoMercado/`, {
+      fecha: `${now.getFullYear()}-${month}-${now.getDate()}`,
+      mercado: 71, //USD for now.
+      delay: 0
+    }).then(response => {
+      this.setState({
+        ...this.state,
+        dolarAmmounts: {
+          totalAmmount: response.data.data.sum,
+          latestAmmount: response.data.data.close,
+          avgAmmount: response.data.data.avg,
+          minAmmount: response.data.data.low,
+          maxAmmount: response.data.data.high,
+          transactions: response.data.data.count
+        }
+      })
+    })
 
     Http.get(
       `/stock/index/`
@@ -145,17 +181,6 @@ class HomePage extends Component {
         stockChart: response.data
       })
     })
-
-    //Http.get("/json/newsJson").then(response => {
-    //  const fixed = response.data.map(elem => {
-    //    return {
-    //      ...elem,
-    //      body: fixUtf8(elem.body),
-    //      headline: fixUtf8(elem.headline)
-    //    };
-    //  });
-    //  this.mapNews(fixed);
-    //});
 
     Http.get("/currencies").then(response => {
       const parser = new DOMParser();

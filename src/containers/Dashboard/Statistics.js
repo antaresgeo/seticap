@@ -59,7 +59,6 @@ class StatisticsComponent extends Component{
                 })
             }
         )
-
         
     }
 

@@ -60,26 +60,26 @@ const dolarPrices = props => {
 };
 
 const getFontAwesomeIcon = str => {
-  if(str === 'up'){
+  if(str === 'UP'){
     return faChevronUp
   }
-  if(str === 'down'){
+  if(str === 'DOWN'){
     return faChevronDown
   }
-  if(str === 'eq'){
+  if(str === 'SAME'){
     return faDotCircle
   }
   return faMinusCircle
 }
 
 const getFontClass = str => {
-  if(str === 'up'){
+  if(str === 'UP'){
     return "text-success"
   }
-  if(str === 'down'){
+  if(str === 'DOWN'){
     return "text-danger"
   }
-  if(str === 'eq'){
+  if(str === 'SAME'){
     return "text-primary"
   }
   return "text-primary"
